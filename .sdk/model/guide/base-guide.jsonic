@@ -1,0 +1,38 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 6
+  metrics: count: method: 7
+
+  entity: booru: {
+    path: "/booru/images": {
+      action: "image": {}
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/booru/images/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/images/husbando": {
+      action: "husbando": {}
+      op: load: method: *GET
+    }
+    path: "/images/kitsune": {
+      action: "kitsune": {}
+      op: load: method: *GET
+    }
+    path: "/images/neko": {
+      action: "neko": {}
+      op: load: method: *GET
+    }
+    path: "/images/waifu": {
+      action: "waifu": {}
+      op: load: method: *GET
+    }
+  }
+
+}

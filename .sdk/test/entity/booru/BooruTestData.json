@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "booru": {
+      "BOORU00": {
+        "artist": "s50",
+        "created_at": "s51",
+        "data": {},
+        "id": "BOORU00",
+        "source": "s54",
+        "status": "s55",
+        "tag": [],
+        "url": "s57"
+      },
+      "BOORU01": {
+        "artist": "sa0",
+        "created_at": "sa1",
+        "data": {},
+        "id": "BOORU01",
+        "source": "sa4",
+        "status": "sa5",
+        "tag": [],
+        "url": "sa7"
+      },
+      "BOORU02": {
+        "artist": "sf0",
+        "created_at": "sf1",
+        "data": {},
+        "id": "BOORU02",
+        "source": "sf4",
+        "status": "sf5",
+        "tag": [],
+        "url": "sf7"
+      }
+    }
+  },
+  "new": {
+    "booru": {
+      "booru_ref01": {
+        "artist": "s140",
+        "created_at": "s141",
+        "data": {},
+        "source": "s144",
+        "status": "s145",
+        "tag": [],
+        "url": "s147"
+      }
+    }
+  }
+}

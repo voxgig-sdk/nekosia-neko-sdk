@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "image": {
+      "IMAGE00": {
+        "data": {},
+        "status": "s15"
+      },
+      "IMAGE01": {
+        "data": {},
+        "status": "s29"
+      },
+      "IMAGE02": {
+        "data": {},
+        "status": "s3d"
+      }
+    }
+  },
+  "new": {
+    "image": {
+      "image_ref01": {
+        "data": {},
+        "status": "s51"
+      }
+    }
+  }
+}

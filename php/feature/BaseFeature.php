@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// NekosiaNeko SDK base feature
+
+class NekosiaNekoBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(NekosiaNekoContext $ctx, array $options): void {}
+    public function PostConstruct(NekosiaNekoContext $ctx): void {}
+    public function PostConstructEntity(NekosiaNekoContext $ctx): void {}
+    public function SetData(NekosiaNekoContext $ctx): void {}
+    public function GetData(NekosiaNekoContext $ctx): void {}
+    public function GetMatch(NekosiaNekoContext $ctx): void {}
+    public function SetMatch(NekosiaNekoContext $ctx): void {}
+    public function PrePoint(NekosiaNekoContext $ctx): void {}
+    public function PreSpec(NekosiaNekoContext $ctx): void {}
+    public function PreRequest(NekosiaNekoContext $ctx): void {}
+    public function PreResponse(NekosiaNekoContext $ctx): void {}
+    public function PreResult(NekosiaNekoContext $ctx): void {}
+    public function PreDone(NekosiaNekoContext $ctx): void {}
+    public function PreUnexpected(NekosiaNekoContext $ctx): void {}
+}

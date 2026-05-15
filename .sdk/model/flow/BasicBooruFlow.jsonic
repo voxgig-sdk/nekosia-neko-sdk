@@ -1,0 +1,52 @@
+# BasicBooruFlow
+
+main: kit: flow: BasicBooruFlow:
+{
+  entity: "booru",
+  kind: "basic",
+  name: "BasicBooruFlow",
+  step: [
+    {
+      input: {
+        ref: "booru_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "booru_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "booru_ref01",
+        srcdatavar: "booru_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "booru01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-booru_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBooruFlow"
+}

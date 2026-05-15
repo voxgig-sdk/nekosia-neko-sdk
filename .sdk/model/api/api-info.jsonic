@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://nekosia.cat/documentation?page=introduction"
+      }
+      description: "Nekosia is a free API designed for integrating anime content, specifically featuring cute Neko images. It includes a dedicated Booru for browsing and adding images, enhancing project content with a variety of anime themes."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://nekosia.cat/api/v1"
+        }
+      ]
+      title: "Nekosia Neko API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
