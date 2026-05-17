@@ -13,7 +13,7 @@ func MakeConfig() map[string]any {
 			},
 		},
 		"options": map[string]any{
-			"base": "https://nekosia.cat/api/v1",
+			"base": "https://api.nekosia.cat/api/v1",
 			"auth": map[string]any{
 				"prefix": "Bearer",
 			},

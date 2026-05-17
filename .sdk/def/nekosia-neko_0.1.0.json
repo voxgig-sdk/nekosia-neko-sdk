@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://nekosia.cat/api/v1",
+      "url": "https://api.nekosia.cat/api/v1",
       "description": "Production server"
     }
   ],

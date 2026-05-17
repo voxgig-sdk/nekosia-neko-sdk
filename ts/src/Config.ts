@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://nekosia.cat/api/v1',
+    base: 'https://api.nekosia.cat/api/v1',
 
     auth: {
       prefix: 'Bearer',
