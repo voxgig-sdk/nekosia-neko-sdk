@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nekosia-neko-sdk"
-	"github.com/voxgig-sdk/nekosia-neko-sdk/core"
+	sdk "github.com/voxgig-sdk/nekosia-neko-sdk/go"
+	"github.com/voxgig-sdk/nekosia-neko-sdk/go/core"
 )
 
 func TestBooruDirect(t *testing.T) {

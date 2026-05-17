@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://nekosia.cat/api/v1',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

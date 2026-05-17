@@ -1,10 +1,10 @@
 package voxgignekosianekosdk
 
 import (
-	"github.com/voxgig-sdk/nekosia-neko-sdk/core"
-	"github.com/voxgig-sdk/nekosia-neko-sdk/entity"
-	"github.com/voxgig-sdk/nekosia-neko-sdk/feature"
-	_ "github.com/voxgig-sdk/nekosia-neko-sdk/utility"
+	"github.com/voxgig-sdk/nekosia-neko-sdk/go/core"
+	"github.com/voxgig-sdk/nekosia-neko-sdk/go/entity"
+	"github.com/voxgig-sdk/nekosia-neko-sdk/go/feature"
+	_ "github.com/voxgig-sdk/nekosia-neko-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

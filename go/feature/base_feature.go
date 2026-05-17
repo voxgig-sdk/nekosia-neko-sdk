@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/nekosia-neko-sdk/core"
+	"github.com/voxgig-sdk/nekosia-neko-sdk/go/core"
 )
 
 type BaseFeature struct {

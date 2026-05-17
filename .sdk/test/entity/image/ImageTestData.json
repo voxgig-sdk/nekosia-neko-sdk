@@ -3,15 +3,18 @@
     "image": {
       "IMAGE00": {
         "data": {},
-        "status": "s15"
+        "status": "s15",
+        "id": "IMAGE00"
       },
       "IMAGE01": {
         "data": {},
-        "status": "s29"
+        "status": "s29",
+        "id": "IMAGE01"
       },
       "IMAGE02": {
         "data": {},
-        "status": "s3d"
+        "status": "s3d",
+        "id": "IMAGE02"
       }
     }
   },
