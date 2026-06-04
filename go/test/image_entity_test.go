@@ -117,7 +117,6 @@ func imageBasicSetup(extra map[string]any) *entityTestSetup {
 		"NEKOSIANEKO_TEST_IMAGE_ENTID": idmap,
 		"NEKOSIANEKO_TEST_LIVE":      "FALSE",
 		"NEKOSIANEKO_TEST_EXPLAIN":   "FALSE",
-		"NEKOSIANEKO_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NEKOSIANEKO_TEST_IMAGE_ENTID"])
@@ -128,7 +127,6 @@ func imageBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NEKOSIANEKO_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NEKOSIANEKO_APIKEY"],
 			},
 			extra,
 		})

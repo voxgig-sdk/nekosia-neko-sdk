@@ -16,8 +16,25 @@ main: {
       ]
       title: "Nekosia Neko API"
       version: "1.0.0"
+      tagline: "Free image API serving cute anime neko (catgirl) artwork and related booru categories"
+      homepage: "https://nekosia.cat"
+      docs_url: "https://nekosia.cat/documentation"
+      about_md: `[Nekosia](https://nekosia.cat) is a free, community-oriented anime image API focused on cute neko (catgirl) artwork. It exposes a small booru-style image repository through a simple HTTP interface at \`https://api.nekosia.cat/api/v1\`, intended for embedding anime imagery into bots, websites, and small apps.
+
+What you get from the API:
+
+- Random cute anime images
+- Anime catgirl (neko) images
+- Foxgirl images
+- Themed categories such as thigh-high socks, anime maids, tails with ribbons
+- Random VTuber images
+
+The public endpoints are documented as healthy and fast (typical response times in the low hundreds of milliseconds). CORS is enabled on most endpoints. Authentication and explicit rate limits are not documented on the public catalogue; use the API politely and check the official documentation for any updates.`
+      entity_desc: {
+        booru: "The booru-style image repository that backs the API, organising anime artwork into browsable categories and tags."
+        image: "A single anime image record returned by the random/category endpoints under `https://api.nekosia.cat/api/v1`."
+      }
+      auth: false
     }
   }
-}
-
 }

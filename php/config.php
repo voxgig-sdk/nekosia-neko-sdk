@@ -20,9 +20,6 @@ class NekosiaNekoConfig
             ],
             "options" => [
                 "base" => "https://api.nekosia.cat/api/v1",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

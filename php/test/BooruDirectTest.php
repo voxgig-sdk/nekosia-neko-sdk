@@ -123,14 +123,12 @@ function booru_direct_setup($mockres)
     $env = Runner::env_override([
         "NEKOSIANEKO_TEST_BOORU_ENTID" => [],
         "NEKOSIANEKO_TEST_LIVE" => "FALSE",
-        "NEKOSIANEKO_APIKEY" => "NONE",
     ]);
 
     $live = $env["NEKOSIANEKO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["NEKOSIANEKO_APIKEY"],
         ];
         $client = new NekosiaNekoSDK($merged_opts);
         return [

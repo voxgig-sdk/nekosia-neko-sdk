@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from nekosianeko_sdk import NekosiaNekoSDK
 
-client = NekosiaNekoSDK({
-    "apikey": os.environ.get("NEKOSIA-NEKO_APIKEY"),
-})
+client = NekosiaNekoSDK({})
 ```
 
 ### 2. List boorus
@@ -138,7 +135,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NEKOSIA-NEKO_TEST_LIVE=TRUE
-NEKOSIA-NEKO_APIKEY=<your-key>
 ```
 
 Then run:
@@ -162,7 +158,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
