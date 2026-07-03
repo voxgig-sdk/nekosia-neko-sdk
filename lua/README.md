@@ -10,7 +10,7 @@ The Lua SDK for the NekosiaNeko API — an entity-oriented client using Lua conv
 
 ## Install
 ```bash
-luarocks install nekosia-neko-sdk
+luarocks install voxgig-sdk-nekosia-neko
 ```
 
 If the module is not yet published, add the source directory to

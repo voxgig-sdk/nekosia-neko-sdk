@@ -10,7 +10,7 @@ The Python SDK for the NekosiaNeko API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install nekosia-neko-sdk
+pip install voxgig-sdk-nekosia-neko
 ```
 
 Or install from source:

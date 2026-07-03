@@ -10,7 +10,7 @@ The PHP SDK for the NekosiaNeko API — an entity-oriented client using PHP conv
 
 ## Install
 ```bash
-composer require voxgig/nekosia-neko-sdk
+composer require voxgig-sdk/nekosia-neko
 ```
 
 

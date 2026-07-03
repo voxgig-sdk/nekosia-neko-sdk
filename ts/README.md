@@ -10,7 +10,7 @@ The TypeScript SDK for the NekosiaNeko API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install nekosia-neko
+npm install @voxgig-sdk/nekosia-neko
 ```
 ## Tutorial: your first API call
 

@@ -10,13 +10,13 @@ The Ruby SDK for the NekosiaNeko API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install nekosia-neko-sdk
+gem install voxgig-sdk-nekosia-neko
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "nekosia-neko-sdk"
+gem "voxgig-sdk-nekosia-neko"
 ```
 
 Then run:
