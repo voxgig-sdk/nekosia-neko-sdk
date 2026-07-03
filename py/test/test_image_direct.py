@@ -59,12 +59,14 @@ def _image_direct_setup(mockres):
     env = runner.env_override({
         "NEKOSIANEKO_TEST_IMAGE_ENTID": {},
         "NEKOSIANEKO_TEST_LIVE": "FALSE",
+        "NEKOSIANEKO_APIKEY": "NONE",
     })
 
     live = env.get("NEKOSIANEKO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("NEKOSIANEKO_APIKEY"),
         }
         client = NekosiaNekoSDK(merged_opts)
         return {

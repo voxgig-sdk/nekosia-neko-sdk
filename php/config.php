@@ -20,6 +20,9 @@ class NekosiaNekoConfig
             ],
             "options" => [
                 "base" => "https://api.nekosia.cat/api/v1",
+                "auth" => [
+                    "prefix" => "Bearer",
+                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -32,55 +35,56 @@ class NekosiaNekoConfig
         'booru' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'artist',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'created_at',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'data',
               'req' => false,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 3,
             ],
             [
+              'active' => true,
               'name' => 'source',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 4,
             ],
             [
+              'active' => true,
               'name' => 'status',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 5,
             ],
             [
+              'active' => true,
               'name' => 'tag',
               'req' => false,
               'type' => '`$ARRAY`',
-              'active' => true,
               'index$' => 6,
             ],
             [
+              'active' => true,
               'name' => 'url',
               'op' => [
                 'list' => [
@@ -90,16 +94,18 @@ class NekosiaNekoConfig
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 7,
             ],
           ],
           'name' => 'booru',
           'op' => [
             'create' => [
+              'input' => 'data',
               'name' => 'create',
               'points' => [
                 [
+                  'active' => true,
+                  'args' => [],
                   'method' => 'POST',
                   'orig' => '/booru/images',
                   'parts' => [
@@ -113,45 +119,44 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
-                  'args' => [],
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'create',
             ],
             'list' => [
+              'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 20,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'tag',
                         'orig' => 'tag',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -173,26 +178,26 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'list',
             ],
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -212,11 +217,9 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],
@@ -227,36 +230,38 @@ class NekosiaNekoConfig
         'image' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'data',
               'req' => false,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'status',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 1,
             ],
           ],
           'name' => 'image',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -276,20 +281,20 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -309,20 +314,20 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 1,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -342,20 +347,20 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 2,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -375,11 +380,9 @@ class NekosiaNekoConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 3,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],

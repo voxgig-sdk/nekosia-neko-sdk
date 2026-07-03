@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -124,9 +124,9 @@ local booru = client:Booru(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Booru(nil):create({
+local result, err = client:Booru():create({
   url = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -134,7 +134,7 @@ local result, err = client:Booru(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Booru(nil):list(nil, nil)
+local results, err = client:Booru():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -142,7 +142,7 @@ local results, err = client:Booru(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Booru(nil):load({ id = "booru_id" }, nil)
+local result, err = client:Booru():load({ id = "booru_id" })
 ```
 
 ### Common Methods
@@ -195,7 +195,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image(nil):load({ id = "image_id" }, nil)
+local result, err = client:Image():load({ id = "image_id" })
 ```
 
 ### Common Methods

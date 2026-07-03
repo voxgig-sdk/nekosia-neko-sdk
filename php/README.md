@@ -1,6 +1,11 @@
 # NekosiaNeko PHP SDK
 
-The PHP SDK for the NekosiaNeko API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the NekosiaNeko API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'nekosianeko_sdk.php';
 
-$client = new NekosiaNekoSDK([]);
+$client = new NekosiaNekoSDK([
+    "apikey" => getenv("NEKOSIA-NEKO_APIKEY"),
+]);
 ```
 
 ### 2. List boorus
 
 ```php
-[$result, $err] = $client->Booru(null)->list(null, null);
+[$result, $err] = $client->Booru()->list();
 if ($err) { throw new \Exception($err); }
 
 if (is_array($result)) {
@@ -40,7 +47,7 @@ if (is_array($result)) {
 ### 3. Load a booru
 
 ```php
-[$result, $err] = $client->Booru(null)->load(["id" => "example_id"], null);
+[$result, $err] = $client->Booru()->load(["id" => "example_id"]);
 if ($err) { throw new \Exception($err); }
 print_r($result);
 ```
@@ -49,7 +56,7 @@ print_r($result);
 
 ```php
 // Create
-[$created, $_] = $client->Booru(null)->create(["name" => "Example"], null);
+[$created, $_] = $client->Booru()->create(["name" => "Example"]);
 
 ```
 
@@ -94,11 +101,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = NekosiaNekoSDK::test(null, null);
+$client = NekosiaNekoSDK::test();
 
-[$result, $err] = $client->NekosiaNeko(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->NekosiaNeko()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -133,6 +138,7 @@ Create a `.env.local` file at the project root:
 
 ```
 NEKOSIA-NEKO_TEST_LIVE=TRUE
+NEKOSIA-NEKO_APIKEY=<your-key>
 ```
 
 Then run:
@@ -155,6 +161,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

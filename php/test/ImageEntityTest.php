@@ -85,6 +85,7 @@ function image_basic_setup($extra)
         "NEKOSIANEKO_TEST_IMAGE_ENTID" => $idmap,
         "NEKOSIANEKO_TEST_LIVE" => "FALSE",
         "NEKOSIANEKO_TEST_EXPLAIN" => "FALSE",
+        "NEKOSIANEKO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function image_basic_setup($extra)
     if ($env["NEKOSIANEKO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["NEKOSIANEKO_APIKEY"],
             ],
             $extra ?? [],
         ]);

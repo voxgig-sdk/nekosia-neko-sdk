@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NEKOSIANEKO_TEST_BOORU_ENTID': {},
     'NEKOSIANEKO_TEST_LIVE': 'FALSE',
+    'NEKOSIANEKO_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NEKOSIANEKO_TEST_LIVE
 
   if (live) {
     const client = new NekosiaNekoSDK({
+      apikey: env.NEKOSIANEKO_APIKEY,
     })
 
     let idmap: any = env['NEKOSIANEKO_TEST_BOORU_ENTID']

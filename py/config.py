@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.nekosia.cat/api/v1",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -27,55 +30,56 @@ def make_config():
       "booru": {
         "fields": [
           {
+            "active": True,
             "name": "artist",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "created_at",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "data",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "id",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "source",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 4,
           },
           {
+            "active": True,
             "name": "status",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 5,
           },
           {
+            "active": True,
             "name": "tag",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 6,
           },
           {
+            "active": True,
             "name": "url",
             "op": {
               "list": {
@@ -85,16 +89,18 @@ def make_config():
             },
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 7,
           },
         ],
         "name": "booru",
         "op": {
           "create": {
+            "input": "data",
             "name": "create",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "POST",
                 "orig": "/booru/images",
                 "parts": [
@@ -108,45 +114,44 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "create",
           },
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 20,
                       "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "page",
                       "orig": "page",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "tag",
                       "orig": "tag",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -168,26 +173,26 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -207,11 +212,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -222,36 +225,38 @@ def make_config():
       "image": {
         "fields": [
           {
+            "active": True,
             "name": "data",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "status",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "image",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                   ],
                 },
@@ -271,20 +276,20 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                   ],
                 },
@@ -304,20 +309,20 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 1,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                   ],
                 },
@@ -337,20 +342,20 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 2,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
                       "reqd": False,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                   ],
                 },
@@ -370,11 +375,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 3,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },

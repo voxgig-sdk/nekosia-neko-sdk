@@ -128,6 +128,7 @@ function basicSetup(extra?: any) {
     'NEKOSIA_NEKO_TEST_BOORU_ENTID': idmap,
     'NEKOSIA_NEKO_TEST_LIVE': 'FALSE',
     'NEKOSIA_NEKO_TEST_EXPLAIN': 'FALSE',
+    'NEKOSIA_NEKO_APIKEY': 'NONE',
   })
 
   idmap = env['NEKOSIA_NEKO_TEST_BOORU_ENTID']
@@ -137,6 +138,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NekosiaNekoSDK(merge([
       {
+        apikey: env.NEKOSIA_NEKO_APIKEY,
       },
       extra
     ]))

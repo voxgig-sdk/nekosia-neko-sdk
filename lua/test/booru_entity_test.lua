@@ -109,6 +109,7 @@ function booru_basic_setup(extra)
     ["NEKOSIANEKO_TEST_BOORU_ENTID"] = idmap,
     ["NEKOSIANEKO_TEST_LIVE"] = "FALSE",
     ["NEKOSIANEKO_TEST_EXPLAIN"] = "FALSE",
+    ["NEKOSIANEKO_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -120,6 +121,7 @@ function booru_basic_setup(extra)
   if env["NEKOSIANEKO_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["NEKOSIANEKO_APIKEY"],
       },
       extra or {},
     })

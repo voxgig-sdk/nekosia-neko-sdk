@@ -99,12 +99,14 @@ func imageDirectSetup(mockres any) *imageDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NEKOSIANEKO_TEST_IMAGE_ENTID": map[string]any{},
 		"NEKOSIANEKO_TEST_LIVE":    "FALSE",
+		"NEKOSIANEKO_APIKEY":       "NONE",
 	})
 
 	live := env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["NEKOSIANEKO_APIKEY"],
 		}
 		client := sdk.NewNekosiaNekoSDK(mergedOpts)
 
