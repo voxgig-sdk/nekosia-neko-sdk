@@ -208,26 +208,14 @@ class NekosiaNekoSDK
   end
 
 
-  # Idiomatic facade: client.booru.list / client.booru.load({ "id" => ... })
-  def booru
-    require_relative 'entity/booru_entity'
-    @booru ||= BooruEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.booru instead.
+  # Canonical facade: client.Booru.list / client.Booru.load({ "id" => ... })
   def Booru(data = nil)
     require_relative 'entity/booru_entity'
     BooruEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
-  def image
-    require_relative 'entity/image_entity'
-    @image ||= ImageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.image instead.
+  # Canonical facade: client.Image.list / client.Image.load({ "id" => ... })
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)

@@ -233,10 +233,10 @@ class NekosiaNekoSDK
 
     private $_booru = null;
 
-    // Idiomatic facade: $client->booru()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Booru() (PHP method
-    // names are case-insensitive).
-    public function booru($data = null)
+    // Canonical facade: $client->Booru()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->booru()
+    // resolves here too.
+    public function Booru($data = null)
     {
         require_once __DIR__ . '/entity/booru_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class NekosiaNekoSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {

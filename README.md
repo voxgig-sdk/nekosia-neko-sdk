@@ -26,9 +26,11 @@ import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
 
 const client = new NekosiaNekoSDK()
 
-// List all boorus
-const boorus = await client.booru.list()
-console.log(boorus.data)
+// List all boorus (returns Booru[])
+const boorus = await client.Booru().list()
+for (const booru of boorus) {
+  console.log(booru)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,12 +86,13 @@ from nekosianeko_sdk import NekosiaNekoSDK
 
 client = NekosiaNekoSDK()
 
-# List all boorus
-boorus = client.booru.list()
-print(boorus)
+# List all boorus (returns a list, raises on error)
+boorus = client.Booru().list({})
+for booru in boorus:
+    print(booru)
 
-# Load a specific booru
-booru = client.booru.load({"id": "example_id"})
+# Load a specific booru (returns the record, raises on error)
+booru = client.Booru().load({"id": "example_id"})
 print(booru)
 ```
 
@@ -101,12 +104,12 @@ require_once 'nekosianeko_sdk.php';
 
 $client = new NekosiaNekoSDK();
 
-// List all boorus (throws on error)
-$boorus = $client->booru()->list();
+// List all boorus (returns an array; throws on error)
+$boorus = $client->Booru()->list();
 print_r($boorus);
 
-// Load a specific booru
-$booru = $client->booru()->load(["id" => "example_id"]);
+// Load a specific booru (returns the bare record; throws on error)
+$booru = $client->Booru()->load(["id" => "example_id"]);
 print_r($booru);
 ```
 
@@ -129,12 +132,12 @@ require_relative "NekosiaNeko_sdk"
 
 client = NekosiaNekoSDK.new
 
-# List all boorus
-boorus = client.booru.list
+# List all boorus (returns an Array; raises on error)
+boorus = client.Booru.list
 puts boorus
 
-# Load a specific booru
-booru = client.booru.load({ "id" => "example_id" })
+# Load a specific booru (returns the bare record; raises on error)
+booru = client.Booru.load({ "id" => "example_id" })
 puts booru
 ```
 
@@ -146,11 +149,11 @@ local sdk = require("nekosia-neko_sdk")
 local client = sdk.new()
 
 -- List all boorus
-local boorus, err = client:booru():list()
+local boorus, err = client:Booru():list()
 print(boorus)
 
 -- Load a specific booru
-local booru, err = client:booru():load({ id = "example_id" })
+local booru, err = client:Booru():load({ id = "example_id" })
 print(booru)
 ```
 
@@ -163,22 +166,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NekosiaNekoSDK.test()
-const result = await client.booru.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const booru = await client.Booru().load({ id: 'test01' })
+// booru is a bare Booru populated with mock data
+console.log(booru)
 ```
 
 ### Python
 
 ```python
 client = NekosiaNekoSDK.test()
-result = client.booru.load({"id": "test01"})
+booru = client.Booru().load({"id": "test01"})
+print(booru)
 ```
 
 ### PHP
 
 ```php
-$client = NekosiaNekoSDK::test();
-$result = $client->booru()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NekosiaNekoSDK::test([
+    "entity" => ["booru" => ["test01" => ["id" => "test01"]]],
+]);
+$booru = $client->Booru()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +201,18 @@ result, err := client.Booru(nil).Load(
 ### Ruby
 
 ```ruby
-client = NekosiaNekoSDK.test
-result = client.booru.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NekosiaNekoSDK.test({
+  "entity" => { "booru" => { "test01" => { "id" => "test01" } } },
+})
+booru = client.Booru.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:booru():load({ id = "test01" })
+local result, err = client:Booru():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +260,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

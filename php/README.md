@@ -29,18 +29,16 @@ require_once 'nekosianeko_sdk.php';
 $client = new NekosiaNekoSDK();
 ```
 
-### 2. List boorus
+### 2. List booru records
 
 ```php
 try {
-    $result = $client->booru()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Booru records — iterate directly.
+    $boorus = $client->Booru()->list();
+    foreach ($boorus as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->booru()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Booru record (throws on error).
+    $booru = $client->Booru()->load(["id" => "example_id"]);
+    print_r($booru);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -59,8 +58,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->booru()->create(["name" => "Example"]);
+// create() returns the bare created Booru record.
+$created = $client->Booru()->create(["name" => "Example"]);
 
 ```
 
@@ -105,13 +104,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NekosiaNekoSDK::test();
+$client = NekosiaNekoSDK::test([
+    "entity" => ["booru" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->booru()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$booru = $client->Booru()->load(["id" => "test01"]);
+print_r($booru);
 ```
 
 ### Use a custom fetch function
@@ -191,7 +194,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Booru` | `($data): BooruEntity` | Create a Booru entity instance. |
-| `Image` | `($data): ImageEntity` | Create a Image entity instance. |
+| `Image` | `($data): ImageEntity` | Create an Image entity instance. |
 
 ### Entity interface
 
@@ -266,7 +269,7 @@ API path: `/images/husbando`
 
 ### Booru
 
-Create an instance: `const booru = client.booru`
+Create an instance: `$booru = $client->Booru();`
 
 #### Operations
 
@@ -291,28 +294,30 @@ Create an instance: `const booru = client.booru`
 
 #### Example: Load
 
-```ts
-const booru = await client.booru.load({ id: 'booru_id' })
+```php
+// load() returns the bare Booru record (throws on error).
+$booru = $client->Booru()->load(["id" => "booru_id"]);
 ```
 
 #### Example: List
 
-```ts
-const boorus = await client.booru.list()
+```php
+// list() returns an array of Booru records (throws on error).
+$boorus = $client->Booru()->list();
 ```
 
 #### Example: Create
 
-```ts
-const booru = await client.booru.create({
-  url: /* `$STRING` */,
-})
+```php
+$booru = $client->Booru()->create([
+    "url" => null, // `$STRING`
+]);
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `$image = $client->Image();`
 
 #### Operations
 
@@ -329,8 +334,9 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```php
+// load() returns the bare Image record (throws on error).
+$image = $client->Image()->load(["id" => "image_id"]);
 ```
 
 
@@ -405,7 +411,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$booru = $client->booru();
+$booru = $client->Booru();
 $booru->load(["id" => "example_id"]);
 
 // $booru->dataGet() now returns the loaded booru data

@@ -31,33 +31,34 @@ local sdk = require("nekosia-neko_sdk")
 local client = sdk.new()
 ```
 
-### 2. List boorus
+### 2. List booru records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:booru():list()
+local boorus, err = client:Booru():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(boorus) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a booru
 
 ```lua
-local result, err = client:booru():load({ id = "example_id" })
+local booru, err = client:Booru():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(booru)
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:booru():create({ name = "Example" })
+local created, err = client:Booru():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -104,8 +105,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:booru():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Booru():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -184,7 +185,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Booru` | `(data) -> BooruEntity` | Create a Booru entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 
 ### Entity interface
 
@@ -206,17 +207,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local booru, err = client:Booru():load({ id = "example_id" })
+    if err then error(err) end
+    -- booru is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -255,7 +261,7 @@ API path: `/images/husbando`
 
 ### Booru
 
-Create an instance: `const booru = client.booru`
+Create an instance: `local booru = client:Booru(nil)`
 
 #### Operations
 
@@ -280,28 +286,28 @@ Create an instance: `const booru = client.booru`
 
 #### Example: Load
 
-```ts
-const booru = await client.booru.load({ id: 'booru_id' })
+```lua
+local booru, err = client:Booru():load({ id = "booru_id" })
 ```
 
 #### Example: List
 
-```ts
-const boorus = await client.booru.list()
+```lua
+local boorus, err = client:Booru():list()
 ```
 
 #### Example: Create
 
-```ts
-const booru = await client.booru.create({
-  url: /* `$STRING` */,
+```lua
+local booru, err = client:Booru():create({
+  url = nil, -- `$STRING`
 })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -318,8 +324,8 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```lua
+local image, err = client:Image():load({ id = "image_id" })
 ```
 
 
@@ -394,7 +400,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local booru = client:booru()
+local booru = client:Booru()
 booru:load({ id = "example_id" })
 
 -- booru:data_get() now returns the loaded booru data

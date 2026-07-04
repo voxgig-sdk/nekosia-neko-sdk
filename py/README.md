@@ -31,24 +31,28 @@ from nekosianeko_sdk import NekosiaNekoSDK
 client = NekosiaNekoSDK()
 ```
 
-### 2. List boorus
+### 2. List booru records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.booru.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    boorus = client.Booru().list({})
+    for booru in boorus:
+        print(booru)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a booru
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.booru.load({"id": "example_id"})
-    print(result)
+    booru = client.Booru().load({"id": "example_id"})
+    print(booru)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -56,8 +60,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.booru.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Booru().create({"name": "Example"})
 
 ```
 
@@ -104,8 +108,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NekosiaNekoSDK.test()
 
-result = client.booru.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+booru = client.Booru().load({"id": "test01"})
+# booru contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -182,7 +187,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Booru` | `(data) -> BooruEntity` | Create a Booru entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 
 ### Entity interface
 
@@ -257,7 +262,7 @@ API path: `/images/husbando`
 
 ### Booru
 
-Create an instance: `const booru = client.booru`
+Create an instance: `booru = client.Booru()`
 
 #### Operations
 
@@ -282,28 +287,28 @@ Create an instance: `const booru = client.booru`
 
 #### Example: Load
 
-```ts
-const booru = await client.booru.load({ id: 'booru_id' })
+```python
+booru = client.Booru().load({"id": "booru_id"})
 ```
 
 #### Example: List
 
-```ts
-const boorus = await client.booru.list()
+```python
+boorus = client.Booru().list({})
 ```
 
 #### Example: Create
 
-```ts
-const booru = await client.booru.create({
-  url: /* `$STRING` */,
+```python
+booru = client.Booru().create({
+    "url": ...,  # `$STRING`
 })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image()`
 
 #### Operations
 
@@ -320,8 +325,8 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```python
+image = client.Image().load({"id": "image_id"})
 ```
 
 
@@ -395,7 +400,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-booru = client.booru
+booru = client.Booru()
 booru.load({"id": "example_id"})
 
 # booru.data_get() now returns the loaded booru data

@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## BooruEntity
 
 ```ruby
-booru = client.booru
+booru = client.Booru
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ booru = client.booru
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.booru.create({
+result = client.Booru.create({
   "url" => # `$STRING`,
 })
 ```
@@ -136,7 +136,7 @@ result = client.booru.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.booru.list(nil)
+results = client.Booru.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -144,7 +144,7 @@ results = client.booru.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.booru.load({ "id" => "booru_id" })
+result = client.Booru.load({ "id" => "booru_id" })
 ```
 
 ### Common Methods
@@ -180,7 +180,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.image
+image = client.Image
 ```
 
 ### Fields
@@ -197,7 +197,7 @@ image = client.image
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.image.load({ "id" => "image_id" })
+result = client.Image.load({ "id" => "image_id" })
 ```
 
 ### Common Methods

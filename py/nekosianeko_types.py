@@ -4,62 +4,63 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Booru:
+class BooruRequired(TypedDict):
     url: str
-    artist: Optional[str] = None
-    created_at: Optional[str] = None
-    data: Optional[dict] = None
-    id: Optional[str] = None
-    source: Optional[str] = None
-    status: Optional[str] = None
-    tag: Optional[list] = None
 
 
-@dataclass
-class BooruLoadMatch:
+class Booru(BooruRequired, total=False):
+    artist: str
+    created_at: str
+    data: dict
+    id: str
+    source: str
+    status: str
+    tag: list
+
+
+class BooruLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class BooruListMatch:
-    artist: Optional[str] = None
-    created_at: Optional[str] = None
-    data: Optional[dict] = None
-    id: Optional[str] = None
-    source: Optional[str] = None
-    status: Optional[str] = None
-    tag: Optional[list] = None
-    url: Optional[str] = None
+class BooruListMatch(TypedDict, total=False):
+    artist: str
+    created_at: str
+    data: dict
+    id: str
+    source: str
+    status: str
+    tag: list
+    url: str
 
 
-@dataclass
-class BooruCreateData:
-    artist: Optional[str] = None
-    created_at: Optional[str] = None
-    data: Optional[dict] = None
-    id: Optional[str] = None
-    source: Optional[str] = None
-    status: Optional[str] = None
-    tag: Optional[list] = None
-    url: Optional[str] = None
+class BooruCreateData(TypedDict, total=False):
+    artist: str
+    created_at: str
+    data: dict
+    id: str
+    source: str
+    status: str
+    tag: list
+    url: str
 
 
-@dataclass
-class Image:
-    data: Optional[dict] = None
-    status: Optional[str] = None
+class Image(TypedDict, total=False):
+    data: dict
+    status: str
 
 
-@dataclass
-class ImageLoadMatch:
-    data: Optional[dict] = None
-    status: Optional[str] = None
-
+class ImageLoadMatch(TypedDict, total=False):
+    data: dict
+    status: str

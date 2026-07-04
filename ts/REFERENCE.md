@@ -121,7 +121,7 @@ Alias for `NekosiaNekoSDK.test()`.
 ## BooruEntity
 
 ```ts
-const booru = client.booru
+const booru = client.Booru()
 ```
 
 ### Fields
@@ -157,7 +157,7 @@ const booru = client.booru
 Create a new entity with the given data.
 
 ```ts
-const result = await client.booru.create({
+const result = await client.Booru().create({
   url: /* `$STRING` */,
 })
 ```
@@ -167,7 +167,7 @@ const result = await client.booru.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.booru.list()
+const results = await client.Booru().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -175,7 +175,7 @@ const results = await client.booru.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.booru.load({ id: 'booru_id' })
+const result = await client.Booru().load({ id: 'booru_id' })
 ```
 
 ### Common Methods
@@ -209,7 +209,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.image
+const image = client.Image()
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ const image = client.image
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.image.load({ id: 'image_id' })
+const result = await client.Image().load({ id: 'image_id' })
 ```
 
 ### Common Methods

@@ -220,41 +220,21 @@ class NekosiaNekoSDK:
         }
 
 
-    @property
-    def booru(self):
-        """Idiomatic facade: client.booru.list() / client.booru.load({"id": ...})."""
-        from entity.booru_entity import BooruEntity
-        cached = getattr(self, "_booru", None)
-        if cached is None:
-            cached = BooruEntity(self, None)
-            self._booru = cached
-        return cached
-
-    def Booru(self, data=None):
-        # Deprecated: use client.booru instead.
+    def Booru(self, data=None) -> "BooruEntity":
+        """Entity factory: client.Booru().list({}) / client.Booru().load({"id": ...})."""
         from entity.booru_entity import BooruEntity
         return BooruEntity(self, data)
 
 
-    @property
-    def image(self):
-        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
-        from entity.image_entity import ImageEntity
-        cached = getattr(self, "_image", None)
-        if cached is None:
-            cached = ImageEntity(self, None)
-            self._image = cached
-        return cached
-
-    def Image(self, data=None):
-        # Deprecated: use client.image instead.
+    def Image(self, data=None) -> "ImageEntity":
+        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NekosiaNekoSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class NekosiaNekoSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.booru_entity import BooruEntity
+    from entity.image_entity import ImageEntity

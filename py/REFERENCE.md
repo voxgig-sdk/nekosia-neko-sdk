@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BooruEntity
 
 ```python
-booru = client.booru
+booru = client.Booru()
 ```
 
 ### Fields
@@ -120,8 +120,8 @@ booru = client.booru
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.booru.create({
-    "url": # `$STRING`,
+result = client.Booru().create({
+    "url": ...,  # `$STRING`
 })
 ```
 
@@ -130,7 +130,9 @@ result = client.booru.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.booru.list({})
+results = client.Booru().list({})
+for booru in results:
+    print(booru)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -138,7 +140,7 @@ results = client.booru.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.booru.load({"id": "booru_id"})
+result = client.Booru().load({"id": "booru_id"})
 ```
 
 ### Common Methods
@@ -173,7 +175,7 @@ Return the entity name.
 ## ImageEntity
 
 ```python
-image = client.image
+image = client.Image()
 ```
 
 ### Fields
@@ -190,7 +192,7 @@ image = client.image
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.image.load({"id": "image_id"})
+result = client.Image().load({"id": "image_id"})
 ```
 
 ### Common Methods
