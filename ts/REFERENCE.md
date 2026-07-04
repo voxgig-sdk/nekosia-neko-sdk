@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -122,7 +121,7 @@ Alias for `NekosiaNekoSDK.test()`.
 ## BooruEntity
 
 ```ts
-const booru = client.Booru()
+const booru = client.booru
 ```
 
 ### Fields
@@ -158,7 +157,7 @@ const booru = client.Booru()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Booru().create({
+const result = await client.booru.create({
   url: /* `$STRING` */,
 })
 ```
@@ -168,7 +167,7 @@ const result = await client.Booru().create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Booru().list()
+const results = await client.booru.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -176,7 +175,7 @@ const results = await client.Booru().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Booru().load({ id: 'booru_id' })
+const result = await client.booru.load({ id: 'booru_id' })
 ```
 
 ### Common Methods
@@ -210,7 +209,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.Image()
+const image = client.image
 ```
 
 ### Fields
@@ -227,7 +226,7 @@ const image = client.Image()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Image().load({ id: 'image_id' })
+const result = await client.image.load({ id: 'image_id' })
 ```
 
 ### Common Methods

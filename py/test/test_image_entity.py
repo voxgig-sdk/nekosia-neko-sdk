@@ -49,8 +49,7 @@ class TestImageEntity:
         # LOAD
         image_ref01_ent = client.Image(None)
         image_ref01_match_dt0 = {}
-        image_ref01_data_dt0_loaded, err = image_ref01_ent.load(image_ref01_match_dt0, None)
-        assert err is None
+        image_ref01_data_dt0_loaded = image_ref01_ent.load(image_ref01_match_dt0, None)
         assert image_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _image_basic_setup(extra):
         "NEKOSIANEKO_TEST_IMAGE_ENTID": idmap,
         "NEKOSIANEKO_TEST_LIVE": "FALSE",
         "NEKOSIANEKO_TEST_EXPLAIN": "FALSE",
-        "NEKOSIANEKO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _image_basic_setup(extra):
     if env.get("NEKOSIANEKO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NEKOSIANEKO_APIKEY"),
             },
             extra or {},
         ])

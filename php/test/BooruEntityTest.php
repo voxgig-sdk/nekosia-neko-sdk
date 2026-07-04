@@ -43,8 +43,7 @@ class BooruEntityTest extends TestCase
         $booru_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.booru"), "booru_ref01"));
 
-        [$booru_ref01_data_result, $err] = $booru_ref01_ent->create($booru_ref01_data, null);
-        $this->assertNull($err);
+        $booru_ref01_data_result = $booru_ref01_ent->create($booru_ref01_data, null);
         $booru_ref01_data = Helpers::to_map($booru_ref01_data_result);
         $this->assertNotNull($booru_ref01_data);
         $this->assertNotNull($booru_ref01_data["id"]);
@@ -52,8 +51,7 @@ class BooruEntityTest extends TestCase
         // LIST
         $booru_ref01_match = [];
 
-        [$booru_ref01_list_result, $err] = $booru_ref01_ent->list($booru_ref01_match, null);
-        $this->assertNull($err);
+        $booru_ref01_list_result = $booru_ref01_ent->list($booru_ref01_match, null);
         $this->assertIsArray($booru_ref01_list_result);
 
         $found_item = sdk_select(
@@ -65,8 +63,7 @@ class BooruEntityTest extends TestCase
         $booru_ref01_match_dt0 = [
             "id" => $booru_ref01_data["id"],
         ];
-        [$booru_ref01_data_dt0_loaded, $err] = $booru_ref01_ent->load($booru_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $booru_ref01_data_dt0_loaded = $booru_ref01_ent->load($booru_ref01_match_dt0, null);
         $booru_ref01_data_dt0_load_result = Helpers::to_map($booru_ref01_data_dt0_loaded);
         $this->assertNotNull($booru_ref01_data_dt0_load_result);
         $this->assertEquals($booru_ref01_data_dt0_load_result["id"], $booru_ref01_data["id"]);
@@ -103,7 +100,6 @@ function booru_basic_setup($extra)
         "NEKOSIANEKO_TEST_BOORU_ENTID" => $idmap,
         "NEKOSIANEKO_TEST_LIVE" => "FALSE",
         "NEKOSIANEKO_TEST_EXPLAIN" => "FALSE",
-        "NEKOSIANEKO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -115,7 +111,6 @@ function booru_basic_setup($extra)
     if ($env["NEKOSIANEKO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["NEKOSIANEKO_APIKEY"],
             ],
             $extra ?? [],
         ]);

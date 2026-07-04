@@ -45,6 +45,7 @@ class BooruEntity
     end
   end
 
+  # @return [Booru, Hash] the current Booru data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class BooruEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Booru fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Booru.
+  #
+  # @param reqmatch [BooruLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Booru, Hash] the loaded Booru; raises NekosiaNekoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class BooruEntity
 
 
   
+  # List Booru items matching the given filter.
+  #
+  # @param reqmatch [BooruListMatch, Hash, nil] match filter (any subset of Booru fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Booru>, Array] the matching Booru items; raises NekosiaNekoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -106,6 +118,11 @@ class BooruEntity
 
 
   
+  # Create a new Booru.
+  #
+  # @param reqdata [BooruCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Booru, Hash] the created Booru; raises NekosiaNekoError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -44,17 +44,14 @@ class TestBooruEntity:
         booru_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.booru"), "booru_ref01"))
 
-        booru_ref01_data_result, err = booru_ref01_ent.create(booru_ref01_data, None)
-        assert err is None
-        booru_ref01_data = helpers.to_map(booru_ref01_data_result)
+        booru_ref01_data = helpers.to_map(booru_ref01_ent.create(booru_ref01_data, None))
         assert booru_ref01_data is not None
         assert booru_ref01_data["id"] is not None
 
         # LIST
         booru_ref01_match = {}
 
-        booru_ref01_list_result, err = booru_ref01_ent.list(booru_ref01_match, None)
-        assert err is None
+        booru_ref01_list_result = booru_ref01_ent.list(booru_ref01_match, None)
         assert isinstance(booru_ref01_list_result, list)
 
         found_item = vs.select(
@@ -66,8 +63,7 @@ class TestBooruEntity:
         booru_ref01_match_dt0 = {
             "id": booru_ref01_data["id"],
         }
-        booru_ref01_data_dt0_loaded, err = booru_ref01_ent.load(booru_ref01_match_dt0, None)
-        assert err is None
+        booru_ref01_data_dt0_loaded = booru_ref01_ent.load(booru_ref01_match_dt0, None)
         booru_ref01_data_dt0_load_result = helpers.to_map(booru_ref01_data_dt0_loaded)
         assert booru_ref01_data_dt0_load_result is not None
         assert booru_ref01_data_dt0_load_result["id"] == booru_ref01_data["id"]
@@ -110,7 +106,6 @@ def _booru_basic_setup(extra):
         "NEKOSIANEKO_TEST_BOORU_ENTID": idmap,
         "NEKOSIANEKO_TEST_LIVE": "FALSE",
         "NEKOSIANEKO_TEST_EXPLAIN": "FALSE",
-        "NEKOSIANEKO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -121,7 +116,6 @@ def _booru_basic_setup(extra):
     if env.get("NEKOSIANEKO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NEKOSIANEKO_APIKEY"),
             },
             extra or {},
         ])

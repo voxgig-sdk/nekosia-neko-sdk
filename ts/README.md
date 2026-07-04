@@ -9,9 +9,12 @@ The TypeScript SDK for the NekosiaNeko API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/nekosia-neko
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nekosia-neko-sdk/releases](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NekosiaNekoSDK } from 'nekosia-neko'
+import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
 
-const client = new NekosiaNekoSDK({
-  apikey: process.env.NEKOSIA-NEKO_APIKEY,
-})
+const client = new NekosiaNekoSDK()
 ```
 
 ### 2. List boorus
 
 ```ts
-const result = await client.Booru().list()
+const result = await client.booru.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a booru
 
 ```ts
-const result = await client.Booru().load({ id: 'example_id' })
+const result = await client.booru.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -53,7 +54,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Booru().create({
+const created = await client.booru.create({
   name: 'Example',
 })
 
@@ -101,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NekosiaNekoSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.booru.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -109,7 +110,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new NekosiaNekoSDK({ apikey: '...' })
+const client = new NekosiaNekoSDK()
 const testClient = client.tester()
 ```
 
@@ -118,7 +119,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.booru
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -145,7 +146,6 @@ const logger = {
 }
 
 const client = new NekosiaNekoSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -155,8 +155,7 @@ const client = new NekosiaNekoSDK({
 Create a `.env.local` file at the project root:
 
 ```
-NEKOSIA-NEKO_TEST_LIVE=TRUE
-NEKOSIA-NEKO_APIKEY=<your-key>
+NEKOSIA_NEKO_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -174,7 +173,6 @@ cd ts && npm test
 
 ```ts
 new NekosiaNekoSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -185,7 +183,6 @@ new NekosiaNekoSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -307,7 +304,7 @@ API path: `/images/husbando`
 
 ### Booru
 
-Create an instance: `const booru = client.Booru()`
+Create an instance: `const booru = client.booru`
 
 #### Operations
 
@@ -333,19 +330,19 @@ Create an instance: `const booru = client.Booru()`
 #### Example: Load
 
 ```ts
-const booru = await client.Booru().load({ id: 'booru_id' })
+const booru = await client.booru.load({ id: 'booru_id' })
 ```
 
 #### Example: List
 
 ```ts
-const boorus = await client.Booru().list()
+const boorus = await client.booru.list()
 ```
 
 #### Example: Create
 
 ```ts
-const booru = await client.Booru().create({
+const booru = await client.booru.create({
   url: /* `$STRING` */,
 })
 ```
@@ -353,7 +350,7 @@ const booru = await client.Booru().create({
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -371,7 +368,7 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 
@@ -432,7 +429,7 @@ nekosia-neko/
 Import the SDK from the package root:
 
 ```ts
-import { NekosiaNekoSDK } from 'nekosia-neko'
+import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
 ```
 
 ### Entity state
@@ -442,11 +439,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const booru = client.booru
+await booru.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// booru.data() now returns the loaded booru data
+// booru.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

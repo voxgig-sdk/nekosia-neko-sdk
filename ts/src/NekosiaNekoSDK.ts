@@ -3,6 +3,8 @@
 import { BooruEntity } from './entity/BooruEntity'
 import { ImageEntity } from './entity/ImageEntity'
 
+export type * from './NekosiaNekoTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class NekosiaNekoSDK {
 
 
 
+  _booru?: BooruEntity
+
+  // Idiomatic facade: `client.booru.list()` / `client.booru.load({ id })`.
+  get booru(): BooruEntity {
+    return (this._booru ??= new BooruEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.booru` instead. */
   Booru(data?: any) {
     const self = this
     return new BooruEntity(self,data)
   }
 
 
+  _image?: ImageEntity
+
+  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
+  get image(): ImageEntity {
+    return (this._image ??= new ImageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.image` instead. */
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)

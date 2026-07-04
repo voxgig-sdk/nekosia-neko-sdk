@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -88,7 +87,7 @@ same parameters as `direct()`.
 ## BooruEntity
 
 ```lua
-local booru = client:Booru(nil)
+local booru = client:booru(nil)
 ```
 
 ### Fields
@@ -124,7 +123,7 @@ local booru = client:Booru(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Booru():create({
+local result, err = client:booru():create({
   url = --[[ `$STRING` ]],
 })
 ```
@@ -134,7 +133,7 @@ local result, err = client:Booru():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Booru():list()
+local results, err = client:booru():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -142,7 +141,7 @@ local results, err = client:Booru():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Booru():load({ id = "booru_id" })
+local result, err = client:booru():load({ id = "booru_id" })
 ```
 
 ### Common Methods
@@ -178,7 +177,7 @@ Return the entity name.
 ## ImageEntity
 
 ```lua
-local image = client:Image(nil)
+local image = client:image(nil)
 ```
 
 ### Fields
@@ -195,7 +194,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image():load({ id = "image_id" })
+local result, err = client:image():load({ id = "image_id" })
 ```
 
 ### Common Methods

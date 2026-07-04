@@ -9,12 +9,9 @@ The Lua SDK for the NekosiaNeko API — an entity-oriented client using Lua conv
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-nekosia-neko
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("nekosia-neko_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("NEKOSIA-NEKO_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List boorus
 
 ```lua
-local result, err = client:Booru():list()
+local result, err = client:booru():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a booru
 
 ```lua
-local result, err = client:Booru():load({ id = "example_id" })
+local result, err = client:booru():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -62,7 +57,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Booru():create({ name = "Example" })
+local created, _ = client:booru():create({ name = "Example" })
 
 ```
 
@@ -109,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:NekosiaNeko():load({ id = "test01" })
+local result, err = client:booru():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -142,8 +137,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-NEKOSIA-NEKO_TEST_LIVE=TRUE
-NEKOSIA-NEKO_APIKEY=<your-key>
+NEKOSIA_NEKO_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -166,7 +160,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -262,7 +255,7 @@ API path: `/images/husbando`
 
 ### Booru
 
-Create an instance: `const booru = client.Booru()`
+Create an instance: `const booru = client.booru`
 
 #### Operations
 
@@ -288,19 +281,19 @@ Create an instance: `const booru = client.Booru()`
 #### Example: Load
 
 ```ts
-const booru = await client.Booru().load({ id: 'booru_id' })
+const booru = await client.booru.load({ id: 'booru_id' })
 ```
 
 #### Example: List
 
 ```ts
-const boorus = await client.Booru().list()
+const boorus = await client.booru.list()
 ```
 
 #### Example: Create
 
 ```ts
-const booru = await client.Booru().create({
+const booru = await client.booru.create({
   url: /* `$STRING` */,
 })
 ```
@@ -308,7 +301,7 @@ const booru = await client.Booru().create({
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -326,7 +319,7 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 
@@ -401,11 +394,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local booru = client:booru()
+booru:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- booru:data_get() now returns the loaded booru data
+-- booru:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

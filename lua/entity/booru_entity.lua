@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch BooruLoadMatch
+---@param ctrl? table
+---@return Booru
+---@return string? err
 function BooruEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch BooruListMatch
+---@param ctrl? table
+---@return Booru[]
+---@return string? err
 function BooruEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -126,6 +134,10 @@ end
 
 
 
+---@param reqdata BooruCreateData
+---@param ctrl? table
+---@return Booru
+---@return string? err
 function BooruEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

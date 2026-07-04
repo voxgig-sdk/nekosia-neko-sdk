@@ -42,8 +42,7 @@ class ImageEntityTest < Minitest::Test
     # LOAD
     image_ref01_ent = client.Image(nil)
     image_ref01_match_dt0 = {}
-    image_ref01_data_dt0_loaded, err = image_ref01_ent.load(image_ref01_match_dt0, nil)
-    assert_nil err
+    image_ref01_data_dt0_loaded = image_ref01_ent.load(image_ref01_match_dt0, nil)
     assert !image_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def image_basic_setup(extra)
     "NEKOSIANEKO_TEST_IMAGE_ENTID" => idmap,
     "NEKOSIANEKO_TEST_LIVE" => "FALSE",
     "NEKOSIANEKO_TEST_EXPLAIN" => "FALSE",
-    "NEKOSIANEKO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def image_basic_setup(extra)
   if env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NEKOSIANEKO_APIKEY"],
       },
       extra || {},
     ])

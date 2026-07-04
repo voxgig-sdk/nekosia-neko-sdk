@@ -36,8 +36,7 @@ class BooruEntityTest < Minitest::Test
     booru_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.booru"), "booru_ref01"))
 
-    booru_ref01_data_result, err = booru_ref01_ent.create(booru_ref01_data, nil)
-    assert_nil err
+    booru_ref01_data_result = booru_ref01_ent.create(booru_ref01_data, nil)
     booru_ref01_data = Helpers.to_map(booru_ref01_data_result)
     assert !booru_ref01_data.nil?
     assert !booru_ref01_data["id"].nil?
@@ -45,8 +44,7 @@ class BooruEntityTest < Minitest::Test
     # LIST
     booru_ref01_match = {}
 
-    booru_ref01_list_result, err = booru_ref01_ent.list(booru_ref01_match, nil)
-    assert_nil err
+    booru_ref01_list_result = booru_ref01_ent.list(booru_ref01_match, nil)
     assert booru_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -58,8 +56,7 @@ class BooruEntityTest < Minitest::Test
     booru_ref01_match_dt0 = {
       "id" => booru_ref01_data["id"],
     }
-    booru_ref01_data_dt0_loaded, err = booru_ref01_ent.load(booru_ref01_match_dt0, nil)
-    assert_nil err
+    booru_ref01_data_dt0_loaded = booru_ref01_ent.load(booru_ref01_match_dt0, nil)
     booru_ref01_data_dt0_load_result = Helpers.to_map(booru_ref01_data_dt0_loaded)
     assert !booru_ref01_data_dt0_load_result.nil?
     assert_equal booru_ref01_data_dt0_load_result["id"], booru_ref01_data["id"]
@@ -100,7 +97,6 @@ def booru_basic_setup(extra)
     "NEKOSIANEKO_TEST_BOORU_ENTID" => idmap,
     "NEKOSIANEKO_TEST_LIVE" => "FALSE",
     "NEKOSIANEKO_TEST_EXPLAIN" => "FALSE",
-    "NEKOSIANEKO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -112,7 +108,6 @@ def booru_basic_setup(extra)
   if env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NEKOSIANEKO_APIKEY"],
       },
       extra || {},
     ])

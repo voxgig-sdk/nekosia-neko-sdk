@@ -117,14 +117,12 @@ function booru_direct_setup(mockres)
   local env = runner.env_override({
     ["NEKOSIANEKO_TEST_BOORU_ENTID"] = {},
     ["NEKOSIANEKO_TEST_LIVE"] = "FALSE",
-    ["NEKOSIANEKO_APIKEY"] = "NONE",
   })
 
   local live = env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["NEKOSIANEKO_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

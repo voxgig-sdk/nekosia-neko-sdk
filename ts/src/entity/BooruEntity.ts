@@ -14,9 +14,15 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Booru,
+  BooruLoadMatch,
+  BooruListMatch,
+  BooruCreateData,
+} from '../NekosiaNekoTypes'
 
 // TODO: needs Entity superclass
-class BooruEntity extends NekosiaNekoEntityBase {
+class BooruEntity extends NekosiaNekoEntityBase<Booru> {
 
   constructor(client: NekosiaNekoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +38,7 @@ class BooruEntity extends NekosiaNekoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: BooruLoadMatch, ctrl?: Control): Promise<Booru> {
 
     const utility = this._utility
 
@@ -136,14 +142,16 @@ class BooruEntity extends NekosiaNekoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Booru> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BooruListMatch, ctrl?: Control): Promise<Booru[]> {
 
     const utility = this._utility
 
@@ -243,14 +251,16 @@ class BooruEntity extends NekosiaNekoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Booru[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: BooruCreateData, ctrl?: Control): Promise<Booru> {
 
     const utility = this._utility
     const {
@@ -349,7 +359,9 @@ class BooruEntity extends NekosiaNekoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Booru> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -15,9 +15,6 @@ module NekosiaNekoConfig
       },
       "options" => {
         "base" => "https://api.nekosia.cat/api/v1",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -193,6 +190,7 @@ module NekosiaNekoConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

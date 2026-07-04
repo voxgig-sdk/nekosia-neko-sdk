@@ -245,11 +245,17 @@ func (sdk *NekosiaNekoSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// Booru returns a Booru entity bound to this client.
+// Idiomatic usage: client.Booru(nil).List(nil, nil) or
+// client.Booru(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NekosiaNekoSDK) Booru(data map[string]any) NekosiaNekoEntity {
 	return NewBooruEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NekosiaNekoSDK) Image(data map[string]any) NekosiaNekoEntity {
 	return NewImageEntityFunc(sdk, data)
 }

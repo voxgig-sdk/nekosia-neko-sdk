@@ -85,6 +85,27 @@ func (e *BooruEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Booru; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *BooruEntity) DataTyped(data ...Booru) Booru {
+	if len(data) > 0 {
+		return typedFrom[Booru](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Booru](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Booru (all fields
+// optional at the wire level).
+func (e *BooruEntity) MatchTyped(match ...Booru) Booru {
+	if len(match) > 0 {
+		return typedFrom[Booru](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Booru](e.Match())
+}
+
 
 func (e *BooruEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *BooruEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// BooruLoadMatch and returns an Booru. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *BooruEntity) LoadTyped(reqmatch BooruLoadMatch, ctrl map[string]any) (Booru, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Booru{}, err
+	}
+	return typedFrom[Booru](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *BooruEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// BooruListMatch and returns []Booru. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *BooruEntity) ListTyped(reqmatch BooruListMatch, ctrl map[string]any) ([]Booru, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Booru](res), nil
 }
 
 
@@ -156,6 +199,17 @@ func (e *BooruEntity) Create(reqdata map[string]any, ctrl map[string]any) (any, 
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// BooruCreateData and returns an Booru. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *BooruEntity) CreateTyped(reqdata BooruCreateData, ctrl map[string]any) (Booru, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return Booru{}, err
+	}
+	return typedFrom[Booru](res), nil
 }
 
 

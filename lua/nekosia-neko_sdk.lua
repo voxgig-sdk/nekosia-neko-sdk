@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:booru():list() / client:booru():load({ id = ... })
+function NekosiaNekoSDK:booru(data)
+  local EntityMod = require("entity.booru_entity")
+  if data == nil then
+    if self._booru == nil then
+      self._booru = EntityMod.new(self, nil)
+    end
+    return self._booru
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:booru() instead.
 function NekosiaNekoSDK:Booru(data)
   local EntityMod = require("entity.booru_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
+function NekosiaNekoSDK:image(data)
+  local EntityMod = require("entity.image_entity")
+  if data == nil then
+    if self._image == nil then
+      self._image = EntityMod.new(self, nil)
+    end
+    return self._image
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:image() instead.
 function NekosiaNekoSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   return EntityMod.new(self, data)
