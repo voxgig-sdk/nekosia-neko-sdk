@@ -31,7 +31,7 @@ class BooruLoadMatch
     public string $id;
 }
 
-/** Match filter for Booru#list (any subset of Booru fields). */
+/** Request payload for Booru#list. */
 class BooruListMatch
 {
     public ?string $artist = null;
@@ -44,7 +44,7 @@ class BooruListMatch
     public ?string $url = null;
 }
 
-/** Match filter for Booru#create (any subset of Booru fields). */
+/** Request payload for Booru#create. */
 class BooruCreateData
 {
     public ?string $artist = null;
@@ -54,7 +54,7 @@ class BooruCreateData
     public ?string $source = null;
     public ?string $status = null;
     public ?array $tag = null;
-    public ?string $url = null;
+    public string $url;
 }
 
 /** Image entity data model. */
@@ -64,7 +64,7 @@ class Image
     public ?string $status = null;
 }
 
-/** Match filter for Image#load (any subset of Image fields). */
+/** Request payload for Image#load. */
 class ImageLoadMatch
 {
     public ?array $data = null;

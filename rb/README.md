@@ -4,6 +4,8 @@
 
 The Ruby SDK for the NekosiaNeko API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Booru` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Booru records — iterate directly.
   boorus = client.Booru.list
   boorus.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["artist"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -58,8 +60,35 @@ end
 
 ```ruby
 # create returns the bare created Booru record.
-created = client.Booru.create({ "name" => "Example" })
+created = client.Booru.create({ "url" => "example" })
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  boorus = client.Booru.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -80,7 +109,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -111,8 +142,8 @@ client = NekosiaNekoSDK.test({
   "entity" => { "booru" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-booru = client.Booru.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+booru = client.Booru.list()
 puts booru
 ```
 
@@ -199,10 +230,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -278,14 +307,14 @@ Create an instance: `booru = client.Booru`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `artist` | `String` |  |
+| `created_at` | `String` |  |
+| `data` | `Hash` |  |
+| `id` | `String` |  |
+| `source` | `String` |  |
+| `status` | `String` |  |
+| `tag` | `Array` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
@@ -305,7 +334,7 @@ boorus = client.Booru.list
 
 ```ruby
 booru = client.Booru.create({
-  "url" => nil, # `$STRING`
+  "url" => "example", # String
 })
 ```
 
@@ -324,23 +353,27 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
+| `data` | `Hash` |  |
+| `status` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Image record (raises on error).
-image = client.Image.load({ "id" => "image_id" })
+image = client.Image.load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -357,8 +390,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -402,14 +436,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 booru = client.Booru
-booru.load({ "id" => "example_id" })
+booru.list()
 
-# booru.data_get now returns the loaded booru data
+# booru.data_get now returns the booru data from the last list
 # booru.match_get returns the last match criteria
 ```
 

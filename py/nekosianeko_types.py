@@ -45,7 +45,11 @@ class BooruListMatch(TypedDict, total=False):
     url: str
 
 
-class BooruCreateData(TypedDict, total=False):
+class BooruCreateDataRequired(TypedDict):
+    url: str
+
+
+class BooruCreateData(BooruCreateDataRequired, total=False):
     artist: str
     created_at: str
     data: dict
@@ -53,7 +57,6 @@ class BooruCreateData(TypedDict, total=False):
     source: str
     status: str
     tag: list
-    url: str
 
 
 class Image(TypedDict, total=False):

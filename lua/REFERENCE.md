@@ -94,27 +94,27 @@ local booru = client:Booru(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `artist` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `data` | `table` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tag` | `table` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `artist` | - | - | - | - | - |
-| `created_at` | - | - | - | - | - |
-| `data` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `status` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `url` | - | Yes | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `artist` | - | - | - |
+| `created_at` | - | - | - |
+| `data` | - | - | - |
+| `id` | - | - | - |
+| `source` | - | - | - |
+| `status` | - | - | - |
+| `tag` | - | - | - |
+| `url` | - | Yes | - |
 
 ### Operations
 
@@ -124,7 +124,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Booru():create({
-  url = --[[ `$STRING` ]],
+  url = --[[ string ]],
 })
 ```
 
@@ -184,8 +184,8 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -194,7 +194,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image():load({ id = "image_id" })
+local result, err = client:Image():load()
 ```
 
 ### Common Methods

@@ -54,7 +54,7 @@ BooruLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Booru#list (any subset of Booru fields).
+# Request payload for Booru#list.
 #
 # @!attribute [rw] artist
 #   @return [String, nil]
@@ -91,7 +91,7 @@ BooruListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Booru#create (any subset of Booru fields).
+# Request payload for Booru#create.
 #
 # @!attribute [rw] artist
 #   @return [String, nil]
@@ -115,7 +115,7 @@ BooruListMatch = Struct.new(
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
-#   @return [String, nil]
+#   @return [String]
 BooruCreateData = Struct.new(
   :artist,
   :created_at,
@@ -141,7 +141,7 @@ Image = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Image#load (any subset of Image fields).
+# Request payload for Image#load.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]

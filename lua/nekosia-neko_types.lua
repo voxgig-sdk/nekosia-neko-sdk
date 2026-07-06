@@ -20,14 +20,32 @@
 ---@field id string
 
 ---@class BooruListMatch
+---@field artist? string
+---@field created_at? string
+---@field data? table
+---@field id? string
+---@field source? string
+---@field status? string
+---@field tag? table
+---@field url? string
 
 ---@class BooruCreateData
+---@field artist? string
+---@field created_at? string
+---@field data? table
+---@field id? string
+---@field source? string
+---@field status? string
+---@field tag? table
+---@field url string
 
 ---@class Image
 ---@field data? table
 ---@field status? string
 
 ---@class ImageLoadMatch
+---@field data? table
+---@field status? string
 
 local M = {}
 

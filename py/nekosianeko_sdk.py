@@ -221,13 +221,13 @@ class NekosiaNekoSDK:
 
 
     def Booru(self, data=None) -> "BooruEntity":
-        """Entity factory: client.Booru().list({}) / client.Booru().load({"id": ...})."""
+        """Entity factory: client.Booru().list() / client.Booru().load({"id": ...})."""
         from entity.booru_entity import BooruEntity
         return BooruEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 

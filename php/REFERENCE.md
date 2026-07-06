@@ -8,7 +8,7 @@ Complete API reference for the NekosiaNeko PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/nekosia-neko_sdk.php';
+require_once __DIR__ . '/nekosianeko_sdk.php';
 
 $client = new NekosiaNekoSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `BooruEntity` instance. Pass `null` for no initial data.
 
 Create a new `ImageEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NekosiaNekoUtility`
 
 Return a copy of the SDK utility object.
 
@@ -96,27 +96,27 @@ $booru = $client->Booru();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `artist` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `data` | `array` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tag` | `array` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `artist` | - | - | - | - | - |
-| `created_at` | - | - | - | - | - |
-| `data` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `status` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `url` | - | Yes | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `artist` | - | - | - |
+| `created_at` | - | - | - |
+| `data` | - | - | - |
+| `id` | - | - | - |
+| `source` | - | - | - |
+| `status` | - | - | - |
+| `tag` | - | - | - |
+| `url` | - | Yes | - |
 
 ### Operations
 
@@ -126,16 +126,16 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Booru()->create([
-  "url" => /* `$STRING` */,
+  "url" => null, // string
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Booru()->list([]);
+$results = $client->Booru()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -148,19 +148,19 @@ $result = $client->Booru()->load(["id" => "booru_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -169,7 +169,7 @@ Set the entity match criteria.
 Create a new `BooruEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -186,8 +186,8 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `data` | `array` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -196,24 +196,24 @@ $image = $client->Image();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Image()->load(["id" => "image_id"]);
+$result = $client->Image()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -222,7 +222,7 @@ Set the entity match criteria.
 Create a new `ImageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

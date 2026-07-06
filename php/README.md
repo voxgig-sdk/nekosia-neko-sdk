@@ -4,6 +4,8 @@
 
 The PHP SDK for the NekosiaNeko API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Booru()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Booru records — iterate directly.
     $boorus = $client->Booru()->list();
     foreach ($boorus as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["artist"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -59,8 +61,39 @@ try {
 
 ```php
 // create() returns the bare created Booru record.
-$created = $client->Booru()->create(["name" => "Example"]);
+$created = $client->Booru()->create(["url" => "example"]);
 
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $boorus = $client->Booru()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
 ```
 
 
@@ -83,7 +116,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -112,8 +148,8 @@ $client = NekosiaNekoSDK::test([
     "entity" => ["booru" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$booru = $client->Booru()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$booru = $client->Booru()->list();
 print_r($booru);
 ```
 
@@ -203,10 +239,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -283,14 +317,14 @@ Create an instance: `$booru = $client->Booru();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `created_at` | `string` |  |
+| `data` | `array` |  |
+| `id` | `string` |  |
+| `source` | `string` |  |
+| `status` | `string` |  |
+| `tag` | `array` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -310,7 +344,7 @@ $boorus = $client->Booru()->list();
 
 ```php
 $booru = $client->Booru()->create([
-    "url" => null, // `$STRING`
+    "url" => null, // string
 ]);
 ```
 
@@ -329,23 +363,27 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `status` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Image record (throws on error).
-$image = $client->Image()->load(["id" => "image_id"]);
+$image = $client->Image()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -362,8 +400,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -407,15 +446,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $booru = $client->Booru();
-$booru->load(["id" => "example_id"]);
+$booru->list();
 
-// $booru->dataGet() now returns the loaded booru data
-// $booru->matchGet() returns the last match criteria
+// $booru->data_get() now returns the booru data from the last list
+// $booru->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

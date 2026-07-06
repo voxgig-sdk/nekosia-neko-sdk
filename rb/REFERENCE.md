@@ -8,7 +8,7 @@ Complete API reference for the NekosiaNeko Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'nekosia-neko_sdk'
+require_relative 'NekosiaNeko_sdk'
 
 client = NekosiaNekoSDK.new(options)
 ```
@@ -97,27 +97,27 @@ booru = client.Booru
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `artist` | `String` | No |  |
+| `created_at` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `id` | `String` | No |  |
+| `source` | `String` | No |  |
+| `status` | `String` | No |  |
+| `tag` | `Array` | No |  |
+| `url` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `artist` | - | - | - | - | - |
-| `created_at` | - | - | - | - | - |
-| `data` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `status` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `url` | - | Yes | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `artist` | - | - | - |
+| `created_at` | - | - | - |
+| `data` | - | - | - |
+| `id` | - | - | - |
+| `source` | - | - | - |
+| `status` | - | - | - |
+| `tag` | - | - | - |
+| `url` | - | Yes | - |
 
 ### Operations
 
@@ -127,16 +127,16 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Booru.create({
-  "url" => # `$STRING`,
+  "url" => "example", # String
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Booru.list(nil)
+results = client.Booru.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -187,8 +187,8 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `data` | `Hash` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 
@@ -197,7 +197,7 @@ image = client.Image
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Image.load({ "id" => "image_id" })
+result = client.Image.load()
 ```
 
 ### Common Methods

@@ -101,27 +101,27 @@ booru := client.Booru(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `artist` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tag` | `[]any` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `artist` | - | - | - | - | - |
-| `created_at` | - | - | - | - | - |
-| `data` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `source` | - | - | - | - | - |
-| `status` | - | - | - | - | - |
-| `tag` | - | - | - | - | - |
-| `url` | - | Yes | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `artist` | - | - | - |
+| `created_at` | - | - | - |
+| `data` | - | - | - |
+| `id` | - | - | - |
+| `source` | - | - | - |
+| `status` | - | - | - |
+| `tag` | - | - | - |
+| `url` | - | Yes | - |
 
 ### Operations
 
@@ -131,7 +131,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Booru(nil).Create(map[string]any{
-    "url": /* `$STRING` */,
+    "url": /* string */,
 }, nil)
 ```
 
@@ -185,8 +185,8 @@ image := client.Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -195,7 +195,7 @@ image := client.Image(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+result, err := client.Image(nil).Load(nil, nil)
 ```
 
 ### Common Methods

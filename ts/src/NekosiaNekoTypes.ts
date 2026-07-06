@@ -20,14 +20,35 @@ export interface BooruLoadMatch {
   id: string
 }
 
-export type BooruListMatch = Partial<Booru>
+export interface BooruListMatch {
+  artist?: string
+  created_at?: string
+  data?: Record<string, any>
+  id?: string
+  source?: string
+  status?: string
+  tag?: any[]
+  url?: string
+}
 
-export type BooruCreateData = Partial<Booru>
+export interface BooruCreateData {
+  artist?: string
+  created_at?: string
+  data?: Record<string, any>
+  id?: string
+  source?: string
+  status?: string
+  tag?: any[]
+  url: string
+}
 
 export interface Image {
   data?: Record<string, any>
   status?: string
 }
 
-export type ImageLoadMatch = Partial<Image>
+export interface ImageLoadMatch {
+  data?: Record<string, any>
+  status?: string
+}
 

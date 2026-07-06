@@ -25,8 +25,7 @@ type BooruLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// BooruListMatch mirrors the booru fields as an all-optional match
-// filter (Go analog of Partial<Booru>).
+// BooruListMatch is the typed request payload for Booru.ListTyped.
 type BooruListMatch struct {
 	Artist *string `json:"artist,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -38,8 +37,7 @@ type BooruListMatch struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// BooruCreateData mirrors the booru fields as an all-optional match
-// filter (Go analog of Partial<Booru>).
+// BooruCreateData is the typed request payload for Booru.CreateTyped.
 type BooruCreateData struct {
 	Artist *string `json:"artist,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -48,7 +46,7 @@ type BooruCreateData struct {
 	Source *string `json:"source,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Tag *[]any `json:"tag,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Url string `json:"url"`
 }
 
 // Image is the typed data model for the image entity.
@@ -57,8 +55,7 @@ type Image struct {
 	Status *string `json:"status,omitempty"`
 }
 
-// ImageLoadMatch mirrors the image fields as an all-optional match
-// filter (Go analog of Partial<Image>).
+// ImageLoadMatch is the typed request payload for Image.LoadTyped.
 type ImageLoadMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Status *string `json:"status,omitempty"`
