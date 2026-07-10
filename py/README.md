@@ -66,7 +66,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Booru().create({"url": "example"})
+created = client.Booru().create({"url": "example_url"})
 
 ```
 
@@ -335,7 +335,7 @@ boorus = client.Booru().list()
 
 ```python
 booru = client.Booru().create({
-    "url": "example",  # str
+    "url": "example_url",  # str
 })
 ```
 

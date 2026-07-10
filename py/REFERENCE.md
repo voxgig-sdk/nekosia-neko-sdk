@@ -121,7 +121,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Booru().create({
-    "url": "example",  # str
+    "url": "example_url",  # str
 })
 ```
 

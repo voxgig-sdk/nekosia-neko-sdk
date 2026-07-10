@@ -59,7 +59,7 @@ print(booru)
 
 ```lua
 -- Create
-local created, err = client:Booru():create({ url = "example" })
+local created, err = client:Booru():create({ url = "example_url" })
 if err then error(err) end
 
 ```
@@ -322,7 +322,7 @@ local boorus, err = client:Booru():list()
 
 ```lua
 local booru, err = client:Booru():create({
-  url = nil, -- string
+  url = "example_url", -- string
 })
 ```
 

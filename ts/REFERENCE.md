@@ -158,7 +158,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Booru().create({
-  url: /* string */,
+  url: 'example_url',
 })
 ```
 

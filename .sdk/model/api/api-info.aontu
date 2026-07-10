@@ -15,9 +15,9 @@ main: {
           url: "https://api.nekosia.cat/api/v1"
         }
       ]
+      summary: "Nekosia is a free API designed for integrating anime content, specifically featuring cute Neko images."
       title: "Nekosia Neko API"
       version: "1.0.0"
+      website: "https://nekosia.cat"
     }
   }
-}
-

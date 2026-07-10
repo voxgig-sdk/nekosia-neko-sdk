@@ -61,7 +61,7 @@ try {
 
 ```php
 // create() returns the bare created Booru record.
-$created = $client->Booru()->create(["url" => "example"]);
+$created = $client->Booru()->create(["url" => "example_url"]);
 
 ```
 

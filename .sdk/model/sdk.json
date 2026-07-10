@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -562,14 +559,17 @@
           "url": "https://nekosia.cat/documentation?page=introduction"
         },
         "description": "Nekosia is a free API designed for integrating anime content, specifically featuring cute Neko images. It includes a dedicated Booru for browsing and adding images, enhancing project content with a variety of anime themes.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.nekosia.cat/api/v1"
           }
         ],
+        "summary": "Nekosia is a free API designed for integrating anime content, specifically featuring cute Neko images.",
         "title": "Nekosia Neko API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://nekosia.cat"
       },
       "option": {},
       "target": {
@@ -622,6 +622,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -672,6 +675,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

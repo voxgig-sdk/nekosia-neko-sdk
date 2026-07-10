@@ -60,14 +60,14 @@ func main() {
     }
 
     // Load a single booru — the value is the loaded record.
-    booru, err := client.Booru(nil).Load(map[string]any{"id": "example"}, nil)
+    booru, err := client.Booru(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(booru)
 
     // Create a booru.
-    created, err := client.Booru(nil).Create(map[string]any{"url": "example"}, nil)
+    created, err := client.Booru(nil).Create(map[string]any{"url": "example_url"}, nil)
     if err != nil {
         panic(err)
     }
@@ -315,9 +315,9 @@ Create an instance: `booru := client.Booru(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -356,8 +356,12 @@ fmt.Println(boorus) // the array of records
 
 ```go
 result, err := client.Booru(nil).Create(map[string]any{
-    "url": /* string */,
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

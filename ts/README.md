@@ -381,7 +381,7 @@ const boorus = await client.Booru().list()
 
 ```ts
 const booru = await client.Booru().create({
-  url: /* string */,
+  url: 'example_url',
 })
 ```
 

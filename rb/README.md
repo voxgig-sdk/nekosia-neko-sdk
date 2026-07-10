@@ -60,7 +60,7 @@ end
 
 ```ruby
 # create returns the bare created Booru record.
-created = client.Booru.create({ "url" => "example" })
+created = client.Booru.create({ "url" => "example_url" })
 
 ```
 
@@ -334,7 +334,7 @@ boorus = client.Booru.list
 
 ```ruby
 booru = client.Booru.create({
-  "url" => "example", # String
+  "url" => "example_url", # String
 })
 ```
 

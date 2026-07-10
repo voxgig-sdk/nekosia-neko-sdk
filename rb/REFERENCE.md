@@ -127,7 +127,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Booru.create({
-  "url" => "example", # String
+  "url" => "example_url", # String
 })
 ```
 
