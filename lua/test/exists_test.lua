@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- NekosiaNeko SDK exists test
 
 local sdk = require("nekosia-neko_sdk")
 
