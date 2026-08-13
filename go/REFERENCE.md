@@ -104,12 +104,10 @@ fmt.Println(booru.GetName()) // "booru"
 | --- | --- | --- | --- |
 | `artist` | `string` | No |  |
 | `created_at` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
 | `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `tag` | `[]any` | No |  |
-| `url` | `string` | Yes |  |
+| `tags` | `[]any` | No |  |
+| `url` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -117,12 +115,10 @@ fmt.Println(booru.GetName()) // "booru"
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
 
 ### Operations
 
@@ -156,7 +152,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Booru(nil).Create(map[string]any{
-    "url": "example_url",
 }, nil)
 if err != nil {
     panic(err)
@@ -199,8 +194,11 @@ fmt.Println(image.GetName()) // "image"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `status` | `string` | No |  |
+| `artist` | `string` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `tags` | `[]any` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -209,7 +207,7 @@ fmt.Println(image.GetName()) // "image"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Image(nil).Load(nil, nil)
+result, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
 if err != nil {
     panic(err)
 }

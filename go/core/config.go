@@ -41,51 +41,37 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "data",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
 						"name": "id",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
 						"name": "source",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 4,
+						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "status",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 5,
-					},
-					map[string]any{
-						"active": true,
-						"name": "tag",
+						"name": "tags",
 						"req": false,
 						"type": "`$ARRAY`",
-						"index$": 6,
+						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
 						"name": "url",
 						"op": map[string]any{
-							"list": map[string]any{
-								"req": false,
+							"create": map[string]any{
+								"req": true,
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
+						"req": false,
 						"type": "`$STRING`",
-						"index$": 7,
+						"index$": 5,
 					},
 				},
 				"name": "booru",
@@ -97,6 +83,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/booru/images",
 								"parts": []any{
@@ -108,12 +95,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 					"list": map[string]any{
 						"input": "data",
@@ -151,6 +137,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/booru/images",
 								"parts": []any{
@@ -172,7 +159,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -193,6 +179,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/booru/images/{id}",
 								"parts": []any{
@@ -207,12 +194,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -223,17 +209,38 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "data",
+						"name": "artist",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "status",
+						"name": "id",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
+					},
+					map[string]any{
+						"active": true,
+						"name": "source",
+						"req": false,
+						"type": "`$STRING`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
+						"name": "tags",
+						"req": false,
+						"type": "`$ARRAY`",
+						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
+						"name": "url",
+						"req": false,
+						"type": "`$STRING`",
+						"index$": 4,
 					},
 				},
 				"name": "image",
@@ -257,6 +264,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/husbando",
 								"parts": []any{
@@ -271,7 +279,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
@@ -290,6 +298,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/kitsune",
 								"parts": []any{
@@ -304,7 +313,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 1,
 							},
@@ -323,6 +332,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/neko",
 								"parts": []any{
@@ -337,7 +347,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 2,
 							},
@@ -356,6 +366,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/waifu",
 								"parts": []any{
@@ -370,12 +381,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 3,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

@@ -26,8 +26,8 @@ import {
 describe('ImageEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NEKOSIANEKO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NEKOSIANEKO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NEKOSIA_NEKO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NEKOSIA_NEKO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NekosiaNekoSDK.test()
@@ -62,8 +62,9 @@ describe('ImageEntity', async () => {
     // LOAD
     const image_ref01_ent = client.Image()
     const image_ref01_match_dt0: any = {}
-    const image_ref01_data_dt0 = await image_ref01_ent.load(image_ref01_match_dt0)
-    assert(null != image_ref01_data_dt0)
+    image_ref01_match_dt0.id = image_ref01_data.id
+    const image_ref01_data_dt0 = (await image_ref01_ent.load(image_ref01_match_dt0)).data()
+    assert(image_ref01_data_dt0.id === image_ref01_data.id)
 
 
   })

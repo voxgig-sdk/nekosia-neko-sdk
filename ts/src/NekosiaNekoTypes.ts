@@ -8,12 +8,10 @@
 export interface Booru {
   artist?: string
   created_at?: string
-  data?: Record<string, any>
   id?: string
   source?: string
-  status?: string
-  tag?: any[]
-  url: string
+  tags?: any[]
+  url?: string
 }
 
 export interface BooruLoadMatch {
@@ -23,32 +21,52 @@ export interface BooruLoadMatch {
 export interface BooruListMatch {
   artist?: string
   created_at?: string
-  data?: Record<string, any>
   id?: string
   source?: string
-  status?: string
-  tag?: any[]
+  tags?: any[]
   url?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'image'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface BooruCreateData {
   artist?: string
   created_at?: string
-  data?: Record<string, any>
   id?: string
   source?: string
-  status?: string
-  tag?: any[]
-  url: string
+  tags?: any[]
+  url?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'image'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Image {
-  data?: Record<string, any>
-  status?: string
+  artist?: string
+  id?: string
+  source?: string
+  tags?: any[]
+  url?: string
 }
 
 export interface ImageLoadMatch {
-  data?: Record<string, any>
-  status?: string
+  artist?: string
+  id: string
+  source?: string
+  tags?: any[]
+  url?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'husbando' | 'kitsune' | 'neko' | 'waifu'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

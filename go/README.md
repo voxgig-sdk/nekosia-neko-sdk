@@ -67,7 +67,7 @@ func main() {
     fmt.Println(booru)
 
     // Create a booru.
-    created, err := client.Booru(nil).Create(map[string]any{"url": "example_url"}, nil)
+    created, err := client.Booru(nil).Create(map[string]any{"artist": "example_artist", "created_at": "example_created_at"}, nil)
     if err != nil {
         panic(err)
     }
@@ -280,11 +280,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"artist"` |  |
 | `"created_at"` |  |
-| `"data"` |  |
 | `"id"` |  |
 | `"source"` |  |
-| `"status"` |  |
-| `"tag"` |  |
+| `"tags"` |  |
 | `"url"` |  |
 
 Operations: Create, List, Load.
@@ -295,8 +293,11 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"status"` |  |
+| `"artist"` |  |
+| `"id"` |  |
+| `"source"` |  |
+| `"tags"` |  |
+| `"url"` |  |
 
 Operations: Load.
 
@@ -325,11 +326,9 @@ Create an instance: `booru := client.Booru(nil)`
 | --- | --- | --- |
 | `artist` | `string` |  |
 | `created_at` | `string` |  |
-| `data` | `map[string]any` |  |
 | `id` | `string` |  |
 | `source` | `string` |  |
-| `status` | `string` |  |
-| `tag` | `[]any` |  |
+| `tags` | `[]any` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -356,7 +355,6 @@ fmt.Println(boorus) // the array of records
 
 ```go
 result, err := client.Booru(nil).Create(map[string]any{
-    "url": "example_url",
 }, nil)
 if err != nil {
     panic(err)
@@ -379,13 +377,16 @@ Create an instance: `image := client.Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `status` | `string` |  |
+| `artist` | `string` |  |
+| `id` | `string` |  |
+| `source` | `string` |  |
+| `tags` | `[]any` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```go
-image, err := client.Image(nil).Load(nil, nil)
+image, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
 if err != nil {
     panic(err)
 }

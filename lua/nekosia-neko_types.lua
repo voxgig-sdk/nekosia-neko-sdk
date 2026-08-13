@@ -9,12 +9,10 @@
 ---@class Booru
 ---@field artist? string
 ---@field created_at? string
----@field data? table
 ---@field id? string
 ---@field source? string
----@field status? string
----@field tag? table
----@field url string
+---@field tags? table
+---@field url? string
 
 ---@class BooruLoadMatch
 ---@field id string
@@ -22,30 +20,32 @@
 ---@class BooruListMatch
 ---@field artist? string
 ---@field created_at? string
----@field data? table
 ---@field id? string
 ---@field source? string
----@field status? string
----@field tag? table
+---@field tags? table
 ---@field url? string
 
 ---@class BooruCreateData
 ---@field artist? string
 ---@field created_at? string
----@field data? table
 ---@field id? string
 ---@field source? string
----@field status? string
----@field tag? table
----@field url string
+---@field tags? table
+---@field url? string
 
 ---@class Image
----@field data? table
----@field status? string
+---@field artist? string
+---@field id? string
+---@field source? string
+---@field tags? table
+---@field url? string
 
 ---@class ImageLoadMatch
----@field data? table
----@field status? string
+---@field artist? string
+---@field id string
+---@field source? string
+---@field tags? table
+---@field url? string
 
 local M = {}
 

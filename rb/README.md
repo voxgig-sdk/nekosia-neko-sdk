@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Booru record (raises on error).
+  # load returns the ENTITY — call data_get for the Booru record (raises on error).
   booru = client.Booru.load({ "id" => "example_id" })
   puts booru
 rescue => err
@@ -59,8 +59,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Booru record.
-created = client.Booru.create({ "url" => "example_url" })
+# create returns the ENTITY — call data_get for the created Booru record.
+created = client.Booru.create({ "artist" => "example_artist", "created_at" => "example_created_at" })
 
 ```
 
@@ -142,7 +142,8 @@ client = NekosiaNekoSDK.test({
   "entity" => { "booru" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 booru = client.Booru.list()
 puts booru
 ```
@@ -264,11 +265,9 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `artist` |  |
 | `created_at` |  |
-| `data` |  |
 | `id` |  |
 | `source` |  |
-| `status` |  |
-| `tag` |  |
+| `tags` |  |
 | `url` |  |
 
 Operations: Create, List, Load.
@@ -279,8 +278,11 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `artist` |  |
+| `id` |  |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Load.
 
@@ -309,17 +311,15 @@ Create an instance: `booru = client.Booru`
 | --- | --- | --- |
 | `artist` | `String` |  |
 | `created_at` | `String` |  |
-| `data` | `Hash` |  |
 | `id` | `String` |  |
 | `source` | `String` |  |
-| `status` | `String` |  |
-| `tag` | `Array` |  |
+| `tags` | `Array` |  |
 | `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Booru record (raises on error).
+# load returns the ENTITY — call data_get for the Booru record (raises on error).
 booru = client.Booru.load({ "id" => "booru_id" })
 ```
 
@@ -334,7 +334,6 @@ boorus = client.Booru.list
 
 ```ruby
 booru = client.Booru.create({
-  "url" => "example_url", # String
 })
 ```
 
@@ -353,14 +352,17 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `status` | `String` |  |
+| `artist` | `String` |  |
+| `id` | `String` |  |
+| `source` | `String` |  |
+| `tags` | `Array` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Image record (raises on error).
-image = client.Image.load()
+# load returns the ENTITY — call data_get for the Image record (raises on error).
+image = client.Image.load({ "id" => "image_id" })
 ```
 
 

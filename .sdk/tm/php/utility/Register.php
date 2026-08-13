@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ NekosiaNekoUtility::setRegistrar(function (NekosiaNekoUtility $u): void {
     $u->prepare_params = [NekosiaNekoPrepareParams::class, 'call'];
     $u->prepare_path = [NekosiaNekoPreparePath::class, 'call'];
     $u->prepare_query = [NekosiaNekoPrepareQuery::class, 'call'];
+    $u->graphql_body = [NekosiaNekoGraphql::class, 'body'];
+    $u->graphql_errors = [NekosiaNekoGraphql::class, 'errors'];
     $u->result_basic = [NekosiaNekoResultBasic::class, 'call'];
     $u->result_body = [NekosiaNekoResultBody::class, 'call'];
     $u->result_headers = [NekosiaNekoResultHeaders::class, 'call'];

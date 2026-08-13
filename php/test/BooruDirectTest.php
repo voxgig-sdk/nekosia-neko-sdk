@@ -121,11 +121,11 @@ function booru_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "NEKOSIANEKO_TEST_BOORU_ENTID" => [],
-        "NEKOSIANEKO_TEST_LIVE" => "FALSE",
+        "NEKOSIA_NEKO_TEST_BOORU_ENTID" => [],
+        "NEKOSIA_NEKO_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["NEKOSIANEKO_TEST_LIVE"] === "TRUE";
+    $live = $env["NEKOSIA_NEKO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -17,12 +17,10 @@ class Booru
 {
     public ?string $artist = null;
     public ?string $created_at = null;
-    public ?array $data = null;
     public ?string $id = null;
     public ?string $source = null;
-    public ?string $status = null;
-    public ?array $tag = null;
-    public string $url;
+    public ?array $tags = null;
+    public ?string $url = null;
 }
 
 /** Request payload for Booru#load. */
@@ -36,11 +34,9 @@ class BooruListMatch
 {
     public ?string $artist = null;
     public ?string $created_at = null;
-    public ?array $data = null;
     public ?string $id = null;
     public ?string $source = null;
-    public ?string $status = null;
-    public ?array $tag = null;
+    public ?array $tags = null;
     public ?string $url = null;
 }
 
@@ -49,25 +45,29 @@ class BooruCreateData
 {
     public ?string $artist = null;
     public ?string $created_at = null;
-    public ?array $data = null;
     public ?string $id = null;
     public ?string $source = null;
-    public ?string $status = null;
-    public ?array $tag = null;
-    public string $url;
+    public ?array $tags = null;
+    public ?string $url = null;
 }
 
 /** Image entity data model. */
 class Image
 {
-    public ?array $data = null;
-    public ?string $status = null;
+    public ?string $artist = null;
+    public ?string $id = null;
+    public ?string $source = null;
+    public ?array $tags = null;
+    public ?string $url = null;
 }
 
 /** Request payload for Image#load. */
 class ImageLoadMatch
 {
-    public ?array $data = null;
-    public ?string $status = null;
+    public ?string $artist = null;
+    public string $id;
+    public ?string $source = null;
+    public ?array $tags = null;
+    public ?string $url = null;
 }
 

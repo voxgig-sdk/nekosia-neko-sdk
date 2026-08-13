@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ NekosiaNekoUtility.registrar = ->(u) {
   u.prepare_params = NekosiaNekoUtilities::PrepareParams
   u.prepare_path = NekosiaNekoUtilities::PreparePath
   u.prepare_query = NekosiaNekoUtilities::PrepareQuery
+  u.graphql_body = NekosiaNekoUtilities::GraphqlBody
+  u.graphql_errors = NekosiaNekoUtilities::GraphqlErrors
   u.result_basic = NekosiaNekoUtilities::ResultBasic
   u.result_body = NekosiaNekoUtilities::ResultBody
   u.result_headers = NekosiaNekoUtilities::ResultHeaders

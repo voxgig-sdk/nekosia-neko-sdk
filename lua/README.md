@@ -59,7 +59,7 @@ print(booru)
 
 ```lua
 -- Create
-local created, err = client:Booru():create({ url = "example_url" })
+local created, err = client:Booru():create({ artist = "example_artist", created_at = "example_created_at" })
 if err then error(err) end
 
 ```
@@ -254,11 +254,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `artist` |  |
 | `created_at` |  |
-| `data` |  |
 | `id` |  |
 | `source` |  |
-| `status` |  |
-| `tag` |  |
+| `tags` |  |
 | `url` |  |
 
 Operations: Create, List, Load.
@@ -269,8 +267,11 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `artist` |  |
+| `id` |  |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Load.
 
@@ -299,11 +300,9 @@ Create an instance: `local booru = client:Booru(nil)`
 | --- | --- | --- |
 | `artist` | `string` |  |
 | `created_at` | `string` |  |
-| `data` | `table` |  |
 | `id` | `string` |  |
 | `source` | `string` |  |
-| `status` | `string` |  |
-| `tag` | `table` |  |
+| `tags` | `table` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -322,7 +321,6 @@ local boorus, err = client:Booru():list()
 
 ```lua
 local booru, err = client:Booru():create({
-  url = "example_url", -- string
 })
 ```
 
@@ -341,13 +339,16 @@ Create an instance: `local image = client:Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `status` | `string` |  |
+| `artist` | `string` |  |
+| `id` | `string` |  |
+| `source` | `string` |  |
+| `tags` | `table` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local image, err = client:Image():load()
+local image, err = client:Image():load({ id = "image_id" })
 ```
 
 

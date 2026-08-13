@@ -99,12 +99,10 @@ booru = client.Booru
 | --- | --- | --- | --- |
 | `artist` | `String` | No |  |
 | `created_at` | `String` | No |  |
-| `data` | `Hash` | No |  |
 | `id` | `String` | No |  |
 | `source` | `String` | No |  |
-| `status` | `String` | No |  |
-| `tag` | `Array` | No |  |
-| `url` | `String` | Yes |  |
+| `tags` | `Array` | No |  |
+| `url` | `String` | No |  |
 
 ### Field Usage by Operation
 
@@ -112,12 +110,10 @@ booru = client.Booru
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
 
 ### Operations
 
@@ -127,7 +123,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Booru.create({
-  "url" => "example_url", # String
 })
 ```
 
@@ -187,8 +182,11 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `status` | `String` | No |  |
+| `artist` | `String` | No |  |
+| `id` | `String` | No |  |
+| `source` | `String` | No |  |
+| `tags` | `Array` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
@@ -197,7 +195,7 @@ image = client.Image
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Image.load()
+result = client.Image.load({ "id" => "image_id" })
 ```
 
 ### Common Methods

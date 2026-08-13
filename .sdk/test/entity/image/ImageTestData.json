@@ -2,27 +2,35 @@
   "existing": {
     "image": {
       "IMAGE00": {
-        "data": {},
-        "status": "s15",
-        "id": "IMAGE00"
+        "artist": "s32",
+        "id": "IMAGE00",
+        "source": "s34",
+        "tags": [],
+        "url": "s36"
       },
       "IMAGE01": {
-        "data": {},
-        "status": "s29",
-        "id": "IMAGE01"
+        "artist": "s64",
+        "id": "IMAGE01",
+        "source": "s66",
+        "tags": [],
+        "url": "s68"
       },
       "IMAGE02": {
-        "data": {},
-        "status": "s3d",
-        "id": "IMAGE02"
+        "artist": "s96",
+        "id": "IMAGE02",
+        "source": "s98",
+        "tags": [],
+        "url": "s9a"
       }
     }
   },
   "new": {
     "image": {
       "image_ref01": {
-        "data": {},
-        "status": "s51"
+        "artist": "sc8",
+        "source": "sca",
+        "tags": [],
+        "url": "scc"
       }
     }
   }

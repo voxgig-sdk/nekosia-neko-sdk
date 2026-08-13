@@ -98,12 +98,10 @@ $booru = $client->Booru();
 | --- | --- | --- | --- |
 | `artist` | `string` | No |  |
 | `created_at` | `string` | No |  |
-| `data` | `array` | No |  |
 | `id` | `string` | No |  |
 | `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `tag` | `array` | No |  |
-| `url` | `string` | Yes |  |
+| `tags` | `array` | No |  |
+| `url` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -111,12 +109,10 @@ $booru = $client->Booru();
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
 
 ### Operations
 
@@ -126,7 +122,6 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Booru()->create([
-  "url" => null, // string
 ]);
 ```
 
@@ -186,8 +181,11 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `status` | `string` | No |  |
+| `artist` | `string` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `tags` | `array` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -196,7 +194,7 @@ $image = $client->Image();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Image()->load();
+$result = $client->Image()->load(["id" => "image_id"]);
 ```
 
 ### Common Methods

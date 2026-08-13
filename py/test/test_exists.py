@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# NekosiaNeko SDK exists test
 
 import pytest
 from nekosianeko_sdk import NekosiaNekoSDK

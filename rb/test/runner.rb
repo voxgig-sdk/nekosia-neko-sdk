@@ -23,8 +23,8 @@ module NekosiaNekoTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("NEKOSIANEKO_TEST_LIVE")
-    override = getenv("NEKOSIANEKO_TEST_OVERRIDE")
+    live = getenv("NEKOSIA_NEKO_TEST_LIVE")
+    override = getenv("NEKOSIA_NEKO_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module NekosiaNekoTestRunner
       end
     end
 
-    explain = getenv("NEKOSIANEKO_TEST_EXPLAIN")
-    m["NEKOSIANEKO_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("NEKOSIA_NEKO_TEST_EXPLAIN")
+    m["NEKOSIA_NEKO_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

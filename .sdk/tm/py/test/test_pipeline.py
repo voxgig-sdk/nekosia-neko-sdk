@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import NekosiaNekoSDK
-from core.error import NekosiaNekoError
-from core.result import NekosiaNekoResult
-from core.response import NekosiaNekoResponse
-from core.spec import NekosiaNekoSpec
-from feature.base_feature import NekosiaNekoBaseFeature
+from projectname_sdk.core.error import NekosiaNekoError
+from projectname_sdk.core.result import NekosiaNekoResult
+from projectname_sdk.core.response import NekosiaNekoResponse
+from projectname_sdk.core.spec import NekosiaNekoSpec
+from projectname_sdk.feature.base_feature import NekosiaNekoBaseFeature
 
 
 def _client():

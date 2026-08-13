@@ -93,12 +93,10 @@ booru = client.Booru()
 | --- | --- | --- | --- |
 | `artist` | `str` | No |  |
 | `created_at` | `str` | No |  |
-| `data` | `dict` | No |  |
 | `id` | `str` | No |  |
 | `source` | `str` | No |  |
-| `status` | `str` | No |  |
-| `tag` | `list` | No |  |
-| `url` | `str` | Yes |  |
+| `tags` | `list` | No |  |
+| `url` | `str` | No |  |
 
 ### Field Usage by Operation
 
@@ -106,12 +104,10 @@ booru = client.Booru()
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
 
 ### Operations
 
@@ -121,7 +117,6 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Booru().create({
-    "url": "example_url",  # str
 })
 ```
 
@@ -182,8 +177,11 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `status` | `str` | No |  |
+| `artist` | `str` | No |  |
+| `id` | `str` | No |  |
+| `source` | `str` | No |  |
+| `tags` | `list` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
@@ -192,7 +190,7 @@ image = client.Image()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Image().load()
+result = client.Image().load({"id": "image_id"})
 ```
 
 ### Common Methods

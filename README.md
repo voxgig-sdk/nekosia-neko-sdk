@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NekosiaNekoSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NekosiaNekoSDK.test({
+  entity: {
+    booru: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const boorus = await client.Booru().list()
-// boorus is an array of bare Booru records populated with mock data
+// boorus is an array of Booru entities, populated with mock data
+// — call boorus[0].data() for the record itself
 console.log(boorus)
 ```
 
@@ -110,7 +119,7 @@ import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
 
 const client = new NekosiaNekoSDK()
 
-// List all boorus (returns Booru[])
+// List all boorus (returns BooruEntity[] — .data() for the record)
 const boorus = await client.Booru().list()
 for (const booru of boorus) {
   console.log(booru)
@@ -192,7 +201,7 @@ $client = new NekosiaNekoSDK();
 $boorus = $client->Booru()->list();
 print_r($boorus);
 
-// Load a specific booru (returns the bare record; throws on error)
+// Load a specific booru (returns the ENTITY; call data_get() for the record; throws on error)
 $booru = $client->Booru()->load(["id" => "example_id"]);
 print_r($booru);
 ```
@@ -223,7 +232,7 @@ client = NekosiaNekoSDK.new
 boorus = client.Booru.list
 puts boorus
 
-# Load a specific booru (returns the bare record; raises on error)
+# Load a specific booru (returns the ENTITY; call data_get for the record)
 booru = client.Booru.load({ "id" => "example_id" })
 puts booru
 ```
@@ -360,6 +369,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://nekosia.cat/documentation?page=introduction](https://nekosia.cat/documentation?page=introduction)
 

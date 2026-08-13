@@ -130,12 +130,10 @@ const booru = client.Booru()
 | --- | --- | --- | --- |
 | `artist` | `string` | No |  |
 | `created_at` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
 | `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `tag` | `any[]` | No |  |
-| `url` | `string` | Yes |  |
+| `tags` | `any[]` | No |  |
+| `url` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -143,12 +141,31 @@ const booru = client.Booru()
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `image` | `/booru/images` | `client.Booru().create({ $action: 'image', ... })` |
+| `image` | `/booru/images` | `client.Booru().list({ $action: 'image', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Booru record — check the API definition for its shape.
+
+```ts
+const result = await client.Booru().create({
+  $action: 'image',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -158,7 +175,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Booru().create({
-  url: 'example_url',
 })
 ```
 
@@ -216,8 +232,34 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `status` | `string` | No |  |
+| `artist` | `string` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `tags` | `any[]` | No |  |
+| `url` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `husbando` | `/images/husbando` | `client.Image().load({ $action: 'husbando', ... })` |
+| `kitsune` | `/images/kitsune` | `client.Image().load({ $action: 'kitsune', ... })` |
+| `neko` | `/images/neko` | `client.Image().load({ $action: 'neko', ... })` |
+| `waifu` | `/images/waifu` | `client.Image().load({ $action: 'waifu', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Image record — check the API definition for its shape.
+
+```ts
+const result = await client.Image().load({
+  $action: 'husbando',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -226,7 +268,7 @@ const image = client.Image()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Image().load()
+const result = await client.Image().load({ id: 'image_id' })
 ```
 
 ### Common Methods

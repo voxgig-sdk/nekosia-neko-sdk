@@ -1,4 +1,4 @@
 module github.com/voxgig-sdk/nekosia-neko-sdk/go
 
-go 1.20
+go 1.21
 

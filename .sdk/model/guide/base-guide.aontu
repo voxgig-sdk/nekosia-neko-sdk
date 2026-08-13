@@ -9,10 +9,12 @@ guide: {
     path: "/booru/images": {
       action: "image": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
       op: list: method: *GET
     }
     path: "/booru/images/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -20,18 +22,22 @@ guide: {
     path: "/images/husbando": {
       action: "husbando": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/images/kitsune": {
       action: "kitsune": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/images/neko": {
       action: "neko": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/images/waifu": {
       action: "waifu": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 

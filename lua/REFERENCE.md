@@ -96,12 +96,10 @@ local booru = client:Booru(nil)
 | --- | --- | --- | --- |
 | `artist` | `string` | No |  |
 | `created_at` | `string` | No |  |
-| `data` | `table` | No |  |
 | `id` | `string` | No |  |
 | `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `tag` | `table` | No |  |
-| `url` | `string` | Yes |  |
+| `tags` | `table` | No |  |
+| `url` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -109,12 +107,10 @@ local booru = client:Booru(nil)
 | --- | --- | --- | --- |
 | `artist` | - | - | - |
 | `created_at` | - | - | - |
-| `data` | - | - | - |
 | `id` | - | - | - |
 | `source` | - | - | - |
-| `status` | - | - | - |
-| `tag` | - | - | - |
-| `url` | - | Yes | - |
+| `tags` | - | - | - |
+| `url` | - | - | Yes |
 
 ### Operations
 
@@ -124,7 +120,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Booru():create({
-  url = --[[ string ]],
 })
 ```
 
@@ -184,8 +179,11 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `status` | `string` | No |  |
+| `artist` | `string` | No |  |
+| `id` | `string` | No |  |
+| `source` | `string` | No |  |
+| `tags` | `table` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -194,7 +192,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image():load()
+local result, err = client:Image():load({ id = "image_id" })
 ```
 
 ### Common Methods

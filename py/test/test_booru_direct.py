@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from nekosianeko_sdk.utility.voxgig_struct import voxgig_struct as vs
 from nekosianeko_sdk import NekosiaNekoSDK
-from core import helpers
+from nekosianeko_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _booru_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "NEKOSIANEKO_TEST_BOORU_ENTID": {},
-        "NEKOSIANEKO_TEST_LIVE": "FALSE",
+        "NEKOSIA_NEKO_TEST_BOORU_ENTID": {},
+        "NEKOSIA_NEKO_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("NEKOSIANEKO_TEST_LIVE") == "TRUE"
+    live = env.get("NEKOSIA_NEKO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

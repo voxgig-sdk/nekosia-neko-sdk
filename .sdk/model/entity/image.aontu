@@ -6,16 +6,36 @@ main: kit: entity: image: {
 
   fields: [
     {
-      name: "data"
+      name: "artist"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
-      name: "status"
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tags"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "url"
       req: false
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "image"
   op: {
@@ -49,7 +69,7 @@ main: kit: entity: image: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -79,7 +99,7 @@ main: kit: entity: image: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -109,7 +129,7 @@ main: kit: entity: image: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -139,7 +159,7 @@ main: kit: entity: image: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

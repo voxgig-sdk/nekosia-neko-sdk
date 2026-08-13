@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NekosiaNekoControl
-from core.error import NekosiaNekoError
-from core.result import NekosiaNekoResult
-from core.spec import NekosiaNekoSpec
+from nekosianeko_sdk.config import make_config
+from nekosianeko_sdk.features import _make_feature
+from nekosianeko_sdk.core.control import NekosiaNekoControl
+from nekosianeko_sdk.core.error import NekosiaNekoError
+from nekosianeko_sdk.core.result import NekosiaNekoResult
+from nekosianeko_sdk.core.spec import NekosiaNekoSpec
 
 
 # True when this SDK was generated with the named feature.

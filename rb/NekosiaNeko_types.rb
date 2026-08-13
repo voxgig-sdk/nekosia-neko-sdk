@@ -16,31 +16,23 @@
 # @!attribute [rw] created_at
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
 #
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
-#   @return [String]
+#   @return [String, nil]
 Booru = Struct.new(
   :artist,
   :created_at,
-  :data,
   :id,
   :source,
-  :status,
-  :tag,
+  :tags,
   :url,
   keyword_init: true
 )
@@ -62,19 +54,13 @@ BooruLoadMatch = Struct.new(
 # @!attribute [rw] created_at
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
 #
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
@@ -82,11 +68,9 @@ BooruLoadMatch = Struct.new(
 BooruListMatch = Struct.new(
   :artist,
   :created_at,
-  :data,
   :id,
   :source,
-  :status,
-  :tag,
+  :tags,
   :url,
   keyword_init: true
 )
@@ -99,8 +83,31 @@ BooruListMatch = Struct.new(
 # @!attribute [rw] created_at
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] tags
+#   @return [Array, nil]
+#
+# @!attribute [rw] url
+#   @return [String, nil]
+BooruCreateData = Struct.new(
+  :artist,
+  :created_at,
+  :id,
+  :source,
+  :tags,
+  :url,
+  keyword_init: true
+)
+
+# Image entity data model.
+#
+# @!attribute [rw] artist
+#   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -108,49 +115,42 @@ BooruListMatch = Struct.new(
 # @!attribute [rw] source
 #   @return [String, nil]
 #
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
-#   @return [String]
-BooruCreateData = Struct.new(
-  :artist,
-  :created_at,
-  :data,
-  :id,
-  :source,
-  :status,
-  :tag,
-  :url,
-  keyword_init: true
-)
-
-# Image entity data model.
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] status
 #   @return [String, nil]
 Image = Struct.new(
-  :data,
-  :status,
+  :artist,
+  :id,
+  :source,
+  :tags,
+  :url,
   keyword_init: true
 )
 
 # Request payload for Image#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] artist
+#   @return [String, nil]
 #
-# @!attribute [rw] status
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] tags
+#   @return [Array, nil]
+#
+# @!attribute [rw] url
 #   @return [String, nil]
 ImageLoadMatch = Struct.new(
-  :data,
-  :status,
+  :artist,
+  :id,
+  :source,
+  :tags,
+  :url,
   keyword_init: true
 )
 

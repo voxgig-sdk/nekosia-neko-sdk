@@ -43,8 +43,8 @@ class NekosiaNekoTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('NEKOSIANEKO_TEST_LIVE');
-        $override = self::getenv('NEKOSIANEKO_TEST_OVERRIDE');
+        $live = self::getenv('NEKOSIA_NEKO_TEST_LIVE');
+        $override = self::getenv('NEKOSIA_NEKO_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class NekosiaNekoTestRunner
             }
         }
 
-        $explain = self::getenv('NEKOSIANEKO_TEST_EXPLAIN');
+        $explain = self::getenv('NEKOSIA_NEKO_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['NEKOSIANEKO_TEST_EXPLAIN'] = $explain;
+            $m['NEKOSIA_NEKO_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

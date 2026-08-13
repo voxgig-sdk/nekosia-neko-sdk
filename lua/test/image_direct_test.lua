@@ -60,11 +60,11 @@ function image_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["NEKOSIANEKO_TEST_IMAGE_ENTID"] = {},
-    ["NEKOSIANEKO_TEST_LIVE"] = "FALSE",
+    ["NEKOSIA_NEKO_TEST_IMAGE_ENTID"] = {},
+    ["NEKOSIA_NEKO_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
+  local live = env["NEKOSIA_NEKO_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

@@ -26,8 +26,8 @@ import {
 describe('BooruEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NEKOSIANEKO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NEKOSIANEKO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NEKOSIA_NEKO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NEKOSIA_NEKO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NekosiaNekoSDK.test()
@@ -62,14 +62,14 @@ describe('BooruEntity', async () => {
     const booru_ref01_ent = client.Booru()
     let booru_ref01_data = setup.data.new.booru['booru_ref01']
 
-    booru_ref01_data = await booru_ref01_ent.create(booru_ref01_data)
+    booru_ref01_data = (await booru_ref01_ent.create(booru_ref01_data)).data()
     assert(null != booru_ref01_data.id)
 
 
     // LIST
     const booru_ref01_match: any = {}
 
-    const booru_ref01_list = await booru_ref01_ent.list(booru_ref01_match)
+    const booru_ref01_list = (await booru_ref01_ent.list(booru_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(booru_ref01_list, { id: booru_ref01_data.id })))
 
@@ -77,7 +77,7 @@ describe('BooruEntity', async () => {
     // LOAD
     const booru_ref01_match_dt0: any = {}
     booru_ref01_match_dt0.id = booru_ref01_data.id
-    const booru_ref01_data_dt0 = await booru_ref01_ent.load(booru_ref01_match_dt0)
+    const booru_ref01_data_dt0 = (await booru_ref01_ent.load(booru_ref01_match_dt0)).data()
     assert(booru_ref01_data_dt0.id === booru_ref01_data.id)
 
 

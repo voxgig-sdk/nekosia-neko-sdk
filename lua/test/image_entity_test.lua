@@ -29,7 +29,7 @@ describe("ImageEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set NEKOSIANEKO_TEST_IMAGE_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set NEKOSIA_NEKO_TEST_IMAGE_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -44,10 +44,14 @@ describe("ImageEntity", function()
 
     -- LOAD
     local image_ref01_ent = client:Image(nil)
-    local image_ref01_match_dt0 = {}
+    local image_ref01_match_dt0 = {
+      id = image_ref01_data["id"],
+    }
     local image_ref01_data_dt0_loaded, err = image_ref01_ent:load(image_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(image_ref01_data_dt0_loaded)
+    local image_ref01_data_dt0_load_result = helpers.to_map(type(image_ref01_data_dt0_loaded) == 'table' and image_ref01_data_dt0_loaded.data_get and image_ref01_data_dt0_loaded:data_get() or image_ref01_data_dt0_loaded)
+    assert.is_not_nil(image_ref01_data_dt0_load_result)
+    assert.are.equal(image_ref01_data_dt0_load_result["id"], image_ref01_data["id"])
 
   end)
 end)
@@ -84,22 +88,22 @@ function image_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("NEKOSIANEKO_TEST_IMAGE_ENTID")
+  local entid_env_raw = os.getenv("NEKOSIA_NEKO_TEST_IMAGE_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["NEKOSIANEKO_TEST_IMAGE_ENTID"] = idmap,
-    ["NEKOSIANEKO_TEST_LIVE"] = "FALSE",
-    ["NEKOSIANEKO_TEST_EXPLAIN"] = "FALSE",
+    ["NEKOSIA_NEKO_TEST_IMAGE_ENTID"] = idmap,
+    ["NEKOSIA_NEKO_TEST_LIVE"] = "FALSE",
+    ["NEKOSIA_NEKO_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["NEKOSIANEKO_TEST_IMAGE_ENTID"])
+    env["NEKOSIA_NEKO_TEST_IMAGE_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["NEKOSIANEKO_TEST_LIVE"] == "TRUE" then
+  if env["NEKOSIA_NEKO_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -108,13 +112,13 @@ function image_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["NEKOSIANEKO_TEST_LIVE"] == "TRUE"
+  local live = env["NEKOSIA_NEKO_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["NEKOSIANEKO_TEST_EXPLAIN"] == "TRUE",
+    explain = env["NEKOSIA_NEKO_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

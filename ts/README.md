@@ -35,7 +35,9 @@ const client = new NekosiaNekoSDK()
 
 ### 2. List booru records
 
-`list()` resolves to an array of Booru objects — iterate it directly:
+`list()` resolves to an array of Booru ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const boorus = await client.Booru().list()
@@ -61,9 +63,10 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Booru
+// Create — returns the created Booru ENTITY (.data() for the record)
 const created = await client.Booru().create({
-  url: 'example_url',
+  artist: 'example_artist',
+  created_at: 'example_created_at',
 })
 
 ```
@@ -143,7 +146,8 @@ Create a mock client for unit testing — no server required:
 const client = NekosiaNekoSDK.test()
 
 const booru = await client.Booru().list()
-// booru is a bare entity populated with mock response data
+// booru is the entity, populated with mock response data
+// — call booru.data() for the record itself
 console.log(booru)
 ```
 
@@ -313,11 +317,9 @@ The `prepare()` method returns:
 | --- | --- |
 | `artist` |  |
 | `created_at` |  |
-| `data` |  |
 | `id` |  |
 | `source` |  |
-| `status` |  |
-| `tag` |  |
+| `tags` |  |
 | `url` |  |
 
 Operations: create, list, load.
@@ -328,8 +330,11 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `artist` |  |
+| `id` |  |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: load.
 
@@ -358,11 +363,9 @@ Create an instance: `const booru = client.Booru()`
 | --- | --- | --- |
 | `artist` | `string` |  |
 | `created_at` | `string` |  |
-| `data` | `Record<string, any>` |  |
 | `id` | `string` |  |
 | `source` | `string` |  |
-| `status` | `string` |  |
-| `tag` | `any[]` |  |
+| `tags` | `any[]` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -381,7 +384,6 @@ const boorus = await client.Booru().list()
 
 ```ts
 const booru = await client.Booru().create({
-  url: 'example_url',
 })
 ```
 
@@ -400,13 +402,16 @@ Create an instance: `const image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `status` | `string` |  |
+| `artist` | `string` |  |
+| `id` | `string` |  |
+| `source` | `string` |  |
+| `tags` | `any[]` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const image = await client.Image().load()
+const image = await client.Image().load({ id: 'image_id' })
 ```
 
 
