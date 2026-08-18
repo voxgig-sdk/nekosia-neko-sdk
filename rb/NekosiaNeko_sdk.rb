@@ -28,7 +28,7 @@ class NekosiaNekoSDK
     utility = NekosiaNekoUtility.new
     @_utility = utility
 
-    config = NekosiaNekoConfig.make_config
+    config = NekosiaNekoConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

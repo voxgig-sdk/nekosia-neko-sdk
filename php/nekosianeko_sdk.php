@@ -40,7 +40,7 @@ class NekosiaNekoSDK
         $utility = new NekosiaNekoUtility();
         $this->_utility = $utility;
 
-        $config = NekosiaNekoConfig::make_config();
+        $config = NekosiaNekoConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

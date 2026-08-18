@@ -15,7 +15,7 @@ require_relative "../NekosiaNeko_sdk"
 module NekosiaNekoFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = NekosiaNekoConfig.make_config["feature"]
+    f = NekosiaNekoConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
