@@ -273,12 +273,12 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
+| `artist` | Name of the artist |
 | `created_at` |  |
 | `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
+| `source` | Original source URL |
+| `tags` | Tags associated with the image |
+| `url` | URL of the image to add |
 
 Operations: Create, List, Load.
 
@@ -319,12 +319,12 @@ Create an instance: `$booru = $client->Booru();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` |  |
+| `artist` | `string` | Name of the artist |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `array` |  |
-| `url` | `string` |  |
+| `source` | `string` | Original source URL |
+| `tags` | `array` | Tags associated with the image |
+| `url` | `string` | URL of the image to add |
 
 #### Example: Load
 

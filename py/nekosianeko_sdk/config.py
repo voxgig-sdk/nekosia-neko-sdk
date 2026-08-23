@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "NekosiaNeko",
+            "slug": "nekosia-neko",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,6 +54,7 @@ def make_config():
         "fields": [
           {
             "name": "artist",
+            "short": "Name of the artist",
             "type": "`$STRING`",
           },
           {
@@ -63,10 +67,12 @@ def make_config():
           },
           {
             "name": "source",
+            "short": "Original source URL",
             "type": "`$STRING`",
           },
           {
             "name": "tags",
+            "short": "Tags associated with the image",
             "type": "`$ARRAY`",
           },
           {
@@ -77,6 +83,7 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "URL of the image to add",
             "type": "`$STRING`",
           },
         ],

@@ -252,12 +252,12 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
+| `artist` | Name of the artist |
 | `created_at` |  |
 | `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
+| `source` | Original source URL |
+| `tags` | Tags associated with the image |
+| `url` | URL of the image to add |
 
 Operations: Create, List, Load.
 
@@ -298,12 +298,12 @@ Create an instance: `local booru = client:Booru(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` |  |
+| `artist` | `string` | Name of the artist |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `table` |  |
-| `url` | `string` |  |
+| `source` | `string` | Original source URL |
+| `tags` | `table` | Tags associated with the image |
+| `url` | `string` | URL of the image to add |
 
 #### Example: Load
 

@@ -36,6 +36,7 @@
               "active": true,
               "name": "artist",
               "req": false,
+              "short": "Name of the artist",
               "type": "`$STRING`"
             },
             {
@@ -54,12 +55,14 @@
               "active": true,
               "name": "source",
               "req": false,
+              "short": "Original source URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "tags",
               "req": false,
+              "short": "Tags associated with the image",
               "type": "`$ARRAY`"
             },
             {
@@ -72,6 +75,7 @@
                 }
               },
               "req": false,
+              "short": "URL of the image to add",
               "type": "`$STRING`"
             }
           ],

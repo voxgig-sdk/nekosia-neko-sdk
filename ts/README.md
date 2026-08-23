@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -315,12 +315,12 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
+| `artist` | Name of the artist |
 | `created_at` |  |
 | `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
+| `source` | Original source URL |
+| `tags` | Tags associated with the image |
+| `url` | URL of the image to add |
 
 Operations: create, list, load.
 
@@ -361,12 +361,12 @@ Create an instance: `const booru = client.Booru()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` |  |
+| `artist` | `string` | Name of the artist |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `any[]` |  |
-| `url` | `string` |  |
+| `source` | `string` | Original source URL |
+| `tags` | `any[]` | Tags associated with the image |
+| `url` | `string` | URL of the image to add |
 
 #### Example: Load
 

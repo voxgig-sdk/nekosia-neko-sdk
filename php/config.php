@@ -33,6 +33,9 @@ class NekosiaNekoConfig
         return [
             "main" => [
                 "name" => "NekosiaNeko",
+                "slug" => "nekosia-neko",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,6 +59,7 @@ class NekosiaNekoConfig
           'fields' => [
             [
               'name' => 'artist',
+              'short' => 'Name of the artist',
               'type' => '`$STRING`',
             ],
             [
@@ -68,10 +72,12 @@ class NekosiaNekoConfig
             ],
             [
               'name' => 'source',
+              'short' => 'Original source URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'tags',
+              'short' => 'Tags associated with the image',
               'type' => '`$ARRAY`',
             ],
             [
@@ -82,6 +88,7 @@ class NekosiaNekoConfig
                   'type' => '`$STRING`',
                 ],
               ],
+              'short' => 'URL of the image to add',
               'type' => '`$STRING`',
             ],
           ],

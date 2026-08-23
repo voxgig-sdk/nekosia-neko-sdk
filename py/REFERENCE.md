@@ -91,12 +91,12 @@ booru = client.Booru()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `str` | No |  |
+| `artist` | `str` | No | Name of the artist |
 | `created_at` | `str` | No |  |
 | `id` | `str` | No |  |
-| `source` | `str` | No |  |
-| `tags` | `list` | No |  |
-| `url` | `str` | No |  |
+| `source` | `str` | No | Original source URL |
+| `tags` | `list` | No | Tags associated with the image |
+| `url` | `str` | No | URL of the image to add |
 
 ### Field Usage by Operation
 

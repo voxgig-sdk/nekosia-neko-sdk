@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "NekosiaNeko",
+      slug = "nekosia-neko",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -30,6 +33,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "artist",
+            ["short"] = "Name of the artist",
             ["type"] = "`$STRING`",
           },
           {
@@ -42,10 +46,12 @@ local function make_config()
           },
           {
             ["name"] = "source",
+            ["short"] = "Original source URL",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "tags",
+            ["short"] = "Tags associated with the image",
             ["type"] = "`$ARRAY`",
           },
           {
@@ -56,6 +62,7 @@ local function make_config()
                 ["type"] = "`$STRING`",
               },
             },
+            ["short"] = "URL of the image to add",
             ["type"] = "`$STRING`",
           },
         },

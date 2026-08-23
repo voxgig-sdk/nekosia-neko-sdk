@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'NekosiaNeko',
+        slug: "nekosia-neko",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,6 +70,7 @@ class Config {
       "fields": [
         {
           "name": "artist",
+          "short": "Name of the artist",
           "type": "`$STRING`"
         },
         {
@@ -71,10 +83,12 @@ class Config {
         },
         {
           "name": "source",
+          "short": "Original source URL",
           "type": "`$STRING`"
         },
         {
           "name": "tags",
+          "short": "Tags associated with the image",
           "type": "`$ARRAY`"
         },
         {
@@ -85,6 +99,7 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "URL of the image to add",
           "type": "`$STRING`"
         }
       ],

@@ -8,6 +8,7 @@ main: kit: entity: booru: {
     {
       name: "artist"
       req: false
+      short: "Name of the artist"
       type: "`$STRING`"
     }
     {
@@ -23,11 +24,13 @@ main: kit: entity: booru: {
     {
       name: "source"
       req: false
+      short: "Original source URL"
       type: "`$STRING`"
     }
     {
       name: "tags"
       req: false
+      short: "Tags associated with the image"
       type: "`$ARRAY`"
     }
     {
@@ -39,6 +42,7 @@ main: kit: entity: booru: {
         }
       }
       req: false
+      short: "URL of the image to add"
       type: "`$STRING`"
     }
   ]

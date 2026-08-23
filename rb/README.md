@@ -263,12 +263,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
+| `artist` | Name of the artist |
 | `created_at` |  |
 | `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
+| `source` | Original source URL |
+| `tags` | Tags associated with the image |
+| `url` | URL of the image to add |
 
 Operations: Create, List, Load.
 
@@ -309,12 +309,12 @@ Create an instance: `booru = client.Booru`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `String` |  |
+| `artist` | `String` | Name of the artist |
 | `created_at` | `String` |  |
 | `id` | `String` |  |
-| `source` | `String` |  |
-| `tags` | `Array` |  |
-| `url` | `String` |  |
+| `source` | `String` | Original source URL |
+| `tags` | `Array` | Tags associated with the image |
+| `url` | `String` | URL of the image to add |
 
 #### Example: Load
 

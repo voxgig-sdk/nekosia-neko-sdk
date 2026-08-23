@@ -266,12 +266,12 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
+| `artist` | Name of the artist |
 | `created_at` |  |
 | `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
+| `source` | Original source URL |
+| `tags` | Tags associated with the image |
+| `url` | URL of the image to add |
 
 Operations: Create, List, Load.
 
@@ -312,12 +312,12 @@ Create an instance: `booru = client.Booru()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `str` |  |
+| `artist` | `str` | Name of the artist |
 | `created_at` | `str` |  |
 | `id` | `str` |  |
-| `source` | `str` |  |
-| `tags` | `list` |  |
-| `url` | `str` |  |
+| `source` | `str` | Original source URL |
+| `tags` | `list` | Tags associated with the image |
+| `url` | `str` | URL of the image to add |
 
 #### Example: Load
 

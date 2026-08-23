@@ -6,7 +6,7 @@ The Golang SDK for the NekosiaNeko API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Booru(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -278,12 +278,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"artist"` |  |
+| `"artist"` | Name of the artist |
 | `"created_at"` |  |
 | `"id"` |  |
-| `"source"` |  |
-| `"tags"` |  |
-| `"url"` |  |
+| `"source"` | Original source URL |
+| `"tags"` | Tags associated with the image |
+| `"url"` | URL of the image to add |
 
 Operations: Create, List, Load.
 
@@ -324,12 +324,12 @@ Create an instance: `booru := client.Booru(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` |  |
+| `artist` | `string` | Name of the artist |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `[]any` |  |
-| `url` | `string` |  |
+| `source` | `string` | Original source URL |
+| `tags` | `[]any` | Tags associated with the image |
+| `url` | `string` | URL of the image to add |
 
 #### Example: Load
 

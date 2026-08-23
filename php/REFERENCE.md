@@ -96,12 +96,12 @@ $booru = $client->Booru();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `string` | No |  |
+| `artist` | `string` | No | Name of the artist |
 | `created_at` | `string` | No |  |
 | `id` | `string` | No |  |
-| `source` | `string` | No |  |
-| `tags` | `array` | No |  |
-| `url` | `string` | No |  |
+| `source` | `string` | No | Original source URL |
+| `tags` | `array` | No | Tags associated with the image |
+| `url` | `string` | No | URL of the image to add |
 
 ### Field Usage by Operation
 
