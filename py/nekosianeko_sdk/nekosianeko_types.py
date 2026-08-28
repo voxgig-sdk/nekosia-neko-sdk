@@ -30,12 +30,9 @@ class BooruLoadMatch(TypedDict):
 
 
 class BooruListMatch(TypedDict, total=False):
-    artist: str
-    created_at: str
-    id: str
-    source: str
-    tags: list
-    url: str
+    limit: int
+    page: int
+    tag: str
 
 
 class BooruCreateData(TypedDict, total=False):
@@ -55,12 +52,5 @@ class Image(TypedDict, total=False):
     url: str
 
 
-class ImageLoadMatchRequired(TypedDict):
-    id: str
-
-
-class ImageLoadMatch(ImageLoadMatchRequired, total=False):
-    artist: str
-    source: str
-    tags: list
-    url: str
+class ImageLoadMatch(TypedDict, total=False):
+    count: int

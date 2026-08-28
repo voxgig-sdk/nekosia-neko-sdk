@@ -32,12 +32,9 @@ class BooruLoadMatch
 /** Request payload for Booru#list. */
 class BooruListMatch
 {
-    public ?string $artist = null;
-    public ?string $created_at = null;
-    public ?string $id = null;
-    public ?string $source = null;
-    public ?array $tags = null;
-    public ?string $url = null;
+    public ?int $limit = null;
+    public ?int $page = null;
+    public ?string $tag = null;
 }
 
 /** Request payload for Booru#create. */
@@ -64,10 +61,6 @@ class Image
 /** Request payload for Image#load. */
 class ImageLoadMatch
 {
-    public ?string $artist = null;
-    public string $id;
-    public ?string $source = null;
-    public ?array $tags = null;
-    public ?string $url = null;
+    public ?int $count = null;
 }
 

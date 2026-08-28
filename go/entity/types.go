@@ -29,12 +29,9 @@ type BooruLoadMatch struct {
 
 // BooruListMatch is the typed request payload for Booru.ListTyped.
 type BooruListMatch struct {
-	Artist *string `json:"artist,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Tag *string `json:"tag,omitempty"`
 }
 
 // BooruCreateData is the typed request payload for Booru.CreateTyped.
@@ -58,11 +55,7 @@ type Image struct {
 
 // ImageLoadMatch is the typed request payload for Image.LoadTyped.
 type ImageLoadMatch struct {
-	Artist *string `json:"artist,omitempty"`
-	Id string `json:"id"`
-	Source *string `json:"source,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Count *int `json:"count,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

@@ -48,30 +48,18 @@ BooruLoadMatch = Struct.new(
 
 # Request payload for Booru#list.
 #
-# @!attribute [rw] artist
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] created_at
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] source
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] tag
 #   @return [String, nil]
 BooruListMatch = Struct.new(
-  :artist,
-  :created_at,
-  :id,
-  :source,
-  :tags,
-  :url,
+  :limit,
+  :page,
+  :tag,
   keyword_init: true
 )
 
@@ -131,26 +119,10 @@ Image = Struct.new(
 
 # Request payload for Image#load.
 #
-# @!attribute [rw] artist
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] source
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] count
+#   @return [Integer, nil]
 ImageLoadMatch = Struct.new(
-  :artist,
-  :id,
-  :source,
-  :tags,
-  :url,
+  :count,
   keyword_init: true
 )
 

@@ -19,12 +19,9 @@ export interface BooruLoadMatch {
 }
 
 export interface BooruListMatch {
-  artist?: string
-  created_at?: string
-  id?: string
-  source?: string
-  tags?: any[]
-  url?: string
+  limit?: number
+  page?: number
+  tag?: string
 
   // Selects a custom action instead of the plain list:
   //   'image'
@@ -57,11 +54,7 @@ export interface Image {
 }
 
 export interface ImageLoadMatch {
-  artist?: string
-  id: string
-  source?: string
-  tags?: any[]
-  url?: string
+  count?: number
 
   // Selects a custom action instead of the plain load:
   //   'husbando' | 'kitsune' | 'neko' | 'waifu'

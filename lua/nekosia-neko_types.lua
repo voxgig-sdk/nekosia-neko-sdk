@@ -18,12 +18,9 @@
 ---@field id string
 
 ---@class BooruListMatch
----@field artist? string
----@field created_at? string
----@field id? string
----@field source? string
----@field tags? table
----@field url? string
+---@field limit? number
+---@field page? number
+---@field tag? string
 
 ---@class BooruCreateData
 ---@field artist? string
@@ -41,11 +38,7 @@
 ---@field url? string
 
 ---@class ImageLoadMatch
----@field artist? string
----@field id string
----@field source? string
----@field tags? table
----@field url? string
+---@field count? number
 
 local M = {}
 
