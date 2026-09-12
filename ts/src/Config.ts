@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -75,6 +86,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "created_at",
           "type": "`$STRING`"
         },
@@ -93,6 +105,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "uri",
           "name": "url",
           "op": {
             "create": {
@@ -104,6 +117,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "booru",
       "op": {
         "create": {
@@ -115,9 +132,13 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/booru/images",
-              "parts": [
-                "booru",
-                "images"
+              "segments": [
+                {
+                  "lit": "booru"
+                },
+                {
+                  "lit": "images"
+                }
               ],
               "select": {
                 "$action": "image"
@@ -125,7 +146,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "booru",
+                "images"
+              ]
             }
           ]
         },
@@ -161,9 +186,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/booru/images",
-              "parts": [
-                "booru",
-                "images"
+              "segments": [
+                {
+                  "lit": "booru"
+                },
+                {
+                  "lit": "images"
+                }
               ],
               "select": {
                 "$action": "image",
@@ -176,7 +205,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "booru",
+                "images"
+              ]
             }
           ]
         },
@@ -199,10 +232,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/booru/images/{id}",
-              "parts": [
-                "booru",
-                "images",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "booru"
+                },
+                {
+                  "lit": "images"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -212,7 +251,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "booru",
+                "images",
+                "{id}"
+              ]
             }
           ]
         }
@@ -240,10 +284,15 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "uri",
           "name": "url",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "image",
       "op": {
         "load": {
@@ -265,9 +314,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/images/husbando",
-              "parts": [
-                "images",
-                "husbando"
+              "segments": [
+                {
+                  "lit": "images"
+                },
+                {
+                  "lit": "husbando"
+                }
               ],
               "select": {
                 "$action": "husbando",
@@ -278,7 +331,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "images",
+                "husbando"
+              ]
             },
             {
               "args": {
@@ -295,9 +352,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/images/kitsune",
-              "parts": [
-                "images",
-                "kitsune"
+              "segments": [
+                {
+                  "lit": "images"
+                },
+                {
+                  "lit": "kitsune"
+                }
               ],
               "select": {
                 "$action": "kitsune",
@@ -308,7 +369,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "images",
+                "kitsune"
+              ]
             },
             {
               "args": {
@@ -325,9 +390,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/images/neko",
-              "parts": [
-                "images",
-                "neko"
+              "segments": [
+                {
+                  "lit": "images"
+                },
+                {
+                  "lit": "neko"
+                }
               ],
               "select": {
                 "$action": "neko",
@@ -338,7 +407,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "images",
+                "neko"
+              ]
             },
             {
               "args": {
@@ -355,9 +428,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/images/waifu",
-              "parts": [
-                "images",
-                "waifu"
+              "segments": [
+                {
+                  "lit": "images"
+                },
+                {
+                  "lit": "waifu"
+                }
               ],
               "select": {
                 "$action": "waifu",
@@ -368,7 +445,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "images",
+                "waifu"
+              ]
             }
           ]
         }
@@ -384,6 +465,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

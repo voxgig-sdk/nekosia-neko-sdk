@@ -26,6 +26,7 @@ main: kit: entity: image: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -57,9 +58,13 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images/husbando"
-          parts: [
-            "images"
-            "husbando"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "husbando"
+            }
           ]
           select: {
             "$action": "husbando"
@@ -87,9 +92,13 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images/kitsune"
-          parts: [
-            "images"
-            "kitsune"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "kitsune"
+            }
           ]
           select: {
             "$action": "kitsune"
@@ -117,9 +126,13 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images/neko"
-          parts: [
-            "images"
-            "neko"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "neko"
+            }
           ]
           select: {
             "$action": "neko"
@@ -147,9 +160,13 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images/waifu"
-          parts: [
-            "images"
-            "waifu"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "waifu"
+            }
           ]
           select: {
             "$action": "waifu"

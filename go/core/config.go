@@ -42,6 +42,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "created_at",
 						"type": "`$STRING`",
 					},
@@ -60,6 +61,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"op": map[string]any{
 							"create": map[string]any{
@@ -70,6 +72,10 @@ func MakeConfig() map[string]any {
 						"short": "URL of the image to add",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "booru",
 				"op": map[string]any{
@@ -82,9 +88,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/booru/images",
-								"parts": []any{
-									"booru",
-									"images",
+								"segments": []any{
+									map[string]any{
+										"lit": "booru",
+									},
+									map[string]any{
+										"lit": "images",
+									},
 								},
 								"select": map[string]any{
 									"$action": "image",
@@ -92,6 +102,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"booru",
+									"images",
 								},
 							},
 						},
@@ -128,9 +142,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/booru/images",
-								"parts": []any{
-									"booru",
-									"images",
+								"segments": []any{
+									map[string]any{
+										"lit": "booru",
+									},
+									map[string]any{
+										"lit": "images",
+									},
 								},
 								"select": map[string]any{
 									"$action": "image",
@@ -143,6 +161,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"booru",
+									"images",
 								},
 							},
 						},
@@ -166,10 +188,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/booru/images/{id}",
-								"parts": []any{
-									"booru",
-									"images",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "booru",
+									},
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -179,6 +207,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"booru",
+									"images",
+									"{id}",
 								},
 							},
 						},
@@ -207,9 +240,14 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "image",
 				"op": map[string]any{
@@ -232,9 +270,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/husbando",
-								"parts": []any{
-									"images",
-									"husbando",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "husbando",
+									},
 								},
 								"select": map[string]any{
 									"$action": "husbando",
@@ -245,6 +287,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"images",
+									"husbando",
 								},
 							},
 							map[string]any{
@@ -262,9 +308,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/kitsune",
-								"parts": []any{
-									"images",
-									"kitsune",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "kitsune",
+									},
 								},
 								"select": map[string]any{
 									"$action": "kitsune",
@@ -275,6 +325,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"images",
+									"kitsune",
 								},
 							},
 							map[string]any{
@@ -292,9 +346,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/neko",
-								"parts": []any{
-									"images",
-									"neko",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "neko",
+									},
 								},
 								"select": map[string]any{
 									"$action": "neko",
@@ -305,6 +363,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"images",
+									"neko",
 								},
 							},
 							map[string]any{
@@ -322,9 +384,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/waifu",
-								"parts": []any{
-									"images",
-									"waifu",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "waifu",
+									},
 								},
 								"select": map[string]any{
 									"$action": "waifu",
@@ -336,6 +402,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
+								"parts": []any{
+									"images",
+									"waifu",
+								},
 							},
 						},
 					},
@@ -346,6 +416,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

@@ -64,6 +64,7 @@ class NekosiaNekoConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'created_at',
               'type' => '`$STRING`',
             ],
@@ -82,6 +83,7 @@ class NekosiaNekoConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uri',
               'name' => 'url',
               'op' => [
                 'create' => [
@@ -92,6 +94,10 @@ class NekosiaNekoConfig
               'short' => 'URL of the image to add',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'booru',
           'op' => [
@@ -104,9 +110,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/booru/images',
-                  'parts' => [
-                    'booru',
-                    'images',
+                  'segments' => [
+                    [
+                      'lit' => 'booru',
+                    ],
+                    [
+                      'lit' => 'images',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'image',
@@ -114,6 +124,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'booru',
+                    'images',
                   ],
                 ],
               ],
@@ -150,9 +164,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/booru/images',
-                  'parts' => [
-                    'booru',
-                    'images',
+                  'segments' => [
+                    [
+                      'lit' => 'booru',
+                    ],
+                    [
+                      'lit' => 'images',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'image',
@@ -165,6 +183,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'booru',
+                    'images',
                   ],
                 ],
               ],
@@ -188,10 +210,16 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/booru/images/{id}',
-                  'parts' => [
-                    'booru',
-                    'images',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'booru',
+                    ],
+                    [
+                      'lit' => 'images',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -201,6 +229,11 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'booru',
+                    'images',
+                    '{id}',
                   ],
                 ],
               ],
@@ -229,9 +262,14 @@ class NekosiaNekoConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uri',
               'name' => 'url',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'image',
           'op' => [
@@ -254,9 +292,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/husbando',
-                  'parts' => [
-                    'images',
-                    'husbando',
+                  'segments' => [
+                    [
+                      'lit' => 'images',
+                    ],
+                    [
+                      'lit' => 'husbando',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'husbando',
@@ -267,6 +309,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'images',
+                    'husbando',
                   ],
                 ],
                 [
@@ -284,9 +330,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/kitsune',
-                  'parts' => [
-                    'images',
-                    'kitsune',
+                  'segments' => [
+                    [
+                      'lit' => 'images',
+                    ],
+                    [
+                      'lit' => 'kitsune',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'kitsune',
@@ -297,6 +347,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'images',
+                    'kitsune',
                   ],
                 ],
                 [
@@ -314,9 +368,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/neko',
-                  'parts' => [
-                    'images',
-                    'neko',
+                  'segments' => [
+                    [
+                      'lit' => 'images',
+                    ],
+                    [
+                      'lit' => 'neko',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'neko',
@@ -327,6 +385,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'images',
+                    'neko',
                   ],
                 ],
                 [
@@ -344,9 +406,13 @@ class NekosiaNekoConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/waifu',
-                  'parts' => [
-                    'images',
-                    'waifu',
+                  'segments' => [
+                    [
+                      'lit' => 'images',
+                    ],
+                    [
+                      'lit' => 'waifu',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'waifu',
@@ -357,6 +423,10 @@ class NekosiaNekoConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'images',
+                    'waifu',
                   ],
                 ],
               ],

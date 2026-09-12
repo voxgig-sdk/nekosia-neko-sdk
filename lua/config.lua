@@ -38,6 +38,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "created_at",
             ["type"] = "`$STRING`",
           },
@@ -56,6 +57,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["op"] = {
               ["create"] = {
@@ -66,6 +68,10 @@ local function make_config()
             ["short"] = "URL of the image to add",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "booru",
         ["op"] = {
@@ -78,9 +84,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/booru/images",
-                ["parts"] = {
-                  "booru",
-                  "images",
+                ["segments"] = {
+                  {
+                    ["lit"] = "booru",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "image",
@@ -88,6 +98,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "booru",
+                  "images",
                 },
               },
             },
@@ -124,9 +138,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/booru/images",
-                ["parts"] = {
-                  "booru",
-                  "images",
+                ["segments"] = {
+                  {
+                    ["lit"] = "booru",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "image",
@@ -139,6 +157,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "booru",
+                  "images",
                 },
               },
             },
@@ -162,10 +184,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/booru/images/{id}",
-                ["parts"] = {
-                  "booru",
-                  "images",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "booru",
+                  },
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -175,6 +203,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "booru",
+                  "images",
+                  "{id}",
                 },
               },
             },
@@ -203,9 +236,14 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "image",
         ["op"] = {
@@ -228,9 +266,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/husbando",
-                ["parts"] = {
-                  "images",
-                  "husbando",
+                ["segments"] = {
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "husbando",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "husbando",
@@ -241,6 +283,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "images",
+                  "husbando",
                 },
               },
               {
@@ -258,9 +304,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/kitsune",
-                ["parts"] = {
-                  "images",
-                  "kitsune",
+                ["segments"] = {
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "kitsune",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "kitsune",
@@ -271,6 +321,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "images",
+                  "kitsune",
                 },
               },
               {
@@ -288,9 +342,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/neko",
-                ["parts"] = {
-                  "images",
-                  "neko",
+                ["segments"] = {
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "neko",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "neko",
@@ -301,6 +359,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "images",
+                  "neko",
                 },
               },
               {
@@ -318,9 +380,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/waifu",
-                ["parts"] = {
-                  "images",
-                  "waifu",
+                ["segments"] = {
+                  {
+                    ["lit"] = "images",
+                  },
+                  {
+                    ["lit"] = "waifu",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "waifu",
@@ -331,6 +397,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "images",
+                  "waifu",
                 },
               },
             },

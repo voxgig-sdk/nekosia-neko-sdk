@@ -12,6 +12,7 @@ main: kit: entity: booru: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "created_at"
       req: false
       type: "`$STRING`"
@@ -34,6 +35,7 @@ main: kit: entity: booru: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "url"
       op: {
         create: {
@@ -60,9 +62,13 @@ main: kit: entity: booru: {
         {
           method: "POST"
           orig: "/booru/images"
-          parts: [
-            "booru"
-            "images"
+          segments: [
+            {
+              lit: "booru"
+            }
+            {
+              lit: "images"
+            }
           ]
           select: {
             "$action": "image"
@@ -107,9 +113,13 @@ main: kit: entity: booru: {
           }
           method: "GET"
           orig: "/booru/images"
-          parts: [
-            "booru"
-            "images"
+          segments: [
+            {
+              lit: "booru"
+            }
+            {
+              lit: "images"
+            }
           ]
           select: {
             "$action": "image"
@@ -143,10 +153,16 @@ main: kit: entity: booru: {
           }
           method: "GET"
           orig: "/booru/images/{id}"
-          parts: [
-            "booru"
-            "images"
-            "{id}"
+          segments: [
+            {
+              lit: "booru"
+            }
+            {
+              lit: "images"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -1,6 +1,14 @@
 # NekosiaNeko SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -59,6 +67,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "created_at",
             "type": "`$STRING`",
           },
@@ -77,6 +86,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "uri",
             "name": "url",
             "op": {
               "create": {
@@ -88,6 +98,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "booru",
         "op": {
           "create": {
@@ -99,9 +113,13 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/booru/images",
-                "parts": [
-                  "booru",
-                  "images",
+                "segments": [
+                  {
+                    "lit": "booru",
+                  },
+                  {
+                    "lit": "images",
+                  },
                 ],
                 "select": {
                   "$action": "image",
@@ -110,6 +128,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "booru",
+                  "images",
+                ],
               },
             ],
           },
@@ -145,9 +167,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/booru/images",
-                "parts": [
-                  "booru",
-                  "images",
+                "segments": [
+                  {
+                    "lit": "booru",
+                  },
+                  {
+                    "lit": "images",
+                  },
                 ],
                 "select": {
                   "$action": "image",
@@ -161,6 +187,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "booru",
+                  "images",
+                ],
               },
             ],
           },
@@ -183,10 +213,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/booru/images/{id}",
-                "parts": [
-                  "booru",
-                  "images",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "booru",
+                  },
+                  {
+                    "lit": "images",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -197,6 +233,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "booru",
+                  "images",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -224,10 +265,15 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "uri",
             "name": "url",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "image",
         "op": {
           "load": {
@@ -249,9 +295,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/husbando",
-                "parts": [
-                  "images",
-                  "husbando",
+                "segments": [
+                  {
+                    "lit": "images",
+                  },
+                  {
+                    "lit": "husbando",
+                  },
                 ],
                 "select": {
                   "$action": "husbando",
@@ -263,6 +313,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "images",
+                  "husbando",
+                ],
               },
               {
                 "args": {
@@ -279,9 +333,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/kitsune",
-                "parts": [
-                  "images",
-                  "kitsune",
+                "segments": [
+                  {
+                    "lit": "images",
+                  },
+                  {
+                    "lit": "kitsune",
+                  },
                 ],
                 "select": {
                   "$action": "kitsune",
@@ -293,6 +351,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "images",
+                  "kitsune",
+                ],
               },
               {
                 "args": {
@@ -309,9 +371,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/neko",
-                "parts": [
-                  "images",
-                  "neko",
+                "segments": [
+                  {
+                    "lit": "images",
+                  },
+                  {
+                    "lit": "neko",
+                  },
                 ],
                 "select": {
                   "$action": "neko",
@@ -323,6 +389,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "images",
+                  "neko",
+                ],
               },
               {
                 "args": {
@@ -339,9 +409,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/waifu",
-                "parts": [
-                  "images",
-                  "waifu",
+                "segments": [
+                  {
+                    "lit": "images",
+                  },
+                  {
+                    "lit": "waifu",
+                  },
                 ],
                 "select": {
                   "$action": "waifu",
@@ -353,6 +427,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "images",
+                  "waifu",
+                ],
               },
             ],
           },

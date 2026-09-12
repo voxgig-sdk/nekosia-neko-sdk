@@ -50,6 +50,7 @@ module NekosiaNekoConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "created_at",
               "type" => "`$STRING`",
             },
@@ -68,6 +69,7 @@ module NekosiaNekoConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "op" => {
                 "create" => {
@@ -79,6 +81,10 @@ module NekosiaNekoConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "booru",
           "op" => {
             "create" => {
@@ -90,9 +96,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/booru/images",
-                  "parts" => [
-                    "booru",
-                    "images",
+                  "segments" => [
+                    {
+                      "lit" => "booru",
+                    },
+                    {
+                      "lit" => "images",
+                    },
                   ],
                   "select" => {
                     "$action" => "image",
@@ -101,6 +111,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "booru",
+                    "images",
+                  ],
                 },
               ],
             },
@@ -136,9 +150,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/booru/images",
-                  "parts" => [
-                    "booru",
-                    "images",
+                  "segments" => [
+                    {
+                      "lit" => "booru",
+                    },
+                    {
+                      "lit" => "images",
+                    },
                   ],
                   "select" => {
                     "$action" => "image",
@@ -152,6 +170,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "booru",
+                    "images",
+                  ],
                 },
               ],
             },
@@ -174,10 +196,16 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/booru/images/{id}",
-                  "parts" => [
-                    "booru",
-                    "images",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "booru",
+                    },
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -188,6 +216,11 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "booru",
+                    "images",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -215,10 +248,15 @@ module NekosiaNekoConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "image",
           "op" => {
             "load" => {
@@ -240,9 +278,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/images/husbando",
-                  "parts" => [
-                    "images",
-                    "husbando",
+                  "segments" => [
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "husbando",
+                    },
                   ],
                   "select" => {
                     "$action" => "husbando",
@@ -254,6 +296,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "images",
+                    "husbando",
+                  ],
                 },
                 {
                   "args" => {
@@ -270,9 +316,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/images/kitsune",
-                  "parts" => [
-                    "images",
-                    "kitsune",
+                  "segments" => [
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "kitsune",
+                    },
                   ],
                   "select" => {
                     "$action" => "kitsune",
@@ -284,6 +334,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "images",
+                    "kitsune",
+                  ],
                 },
                 {
                   "args" => {
@@ -300,9 +354,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/images/neko",
-                  "parts" => [
-                    "images",
-                    "neko",
+                  "segments" => [
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "neko",
+                    },
                   ],
                   "select" => {
                     "$action" => "neko",
@@ -314,6 +372,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "images",
+                    "neko",
+                  ],
                 },
                 {
                   "args" => {
@@ -330,9 +392,13 @@ module NekosiaNekoConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/images/waifu",
-                  "parts" => [
-                    "images",
-                    "waifu",
+                  "segments" => [
+                    {
+                      "lit" => "images",
+                    },
+                    {
+                      "lit" => "waifu",
+                    },
                   ],
                   "select" => {
                     "$action" => "waifu",
@@ -344,6 +410,10 @@ module NekosiaNekoConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "images",
+                    "waifu",
+                  ],
                 },
               ],
             },
