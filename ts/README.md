@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
+import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko-sdk'
 
 const client = new NekosiaNekoSDK()
 ```
@@ -497,7 +497,7 @@ nekosia-neko/
 Import the SDK from the package root:
 
 ```ts
-import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
+import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko-sdk'
 ```
 
 ### Entity state

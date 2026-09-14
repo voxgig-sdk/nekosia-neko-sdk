@@ -105,7 +105,7 @@ local results, err = client:Booru():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
 | Python | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
 | PHP | `voxgig-sdk/nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/nekosia-neko-sdk/go` | `go get github.com/voxgig-sdk/nekosia-neko-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Booru():list()
 ### TypeScript
 
 ```ts
-import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko'
+import { NekosiaNekoSDK } from '@voxgig-sdk/nekosia-neko-sdk'
 
 const client = new NekosiaNekoSDK()
 
