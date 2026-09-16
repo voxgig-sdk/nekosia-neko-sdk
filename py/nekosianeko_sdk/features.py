@@ -1,12 +1,18 @@
 # NekosiaNeko SDK feature factory
 
 from nekosianeko_sdk.feature.base_feature import NekosiaNekoBaseFeature
+from nekosianeko_sdk.feature.ratelimit_feature import NekosiaNekoRatelimitFeature
+from nekosianeko_sdk.feature.retry_feature import NekosiaNekoRetryFeature
 from nekosianeko_sdk.feature.test_feature import NekosiaNekoTestFeature
+from nekosianeko_sdk.feature.timeout_feature import NekosiaNekoTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NekosiaNekoBaseFeature(),
+    "ratelimit": lambda: NekosiaNekoRatelimitFeature(),
+    "retry": lambda: NekosiaNekoRetryFeature(),
     "test": lambda: NekosiaNekoTestFeature(),
+    "timeout": lambda: NekosiaNekoTimeoutFeature(),
 }
 
 
