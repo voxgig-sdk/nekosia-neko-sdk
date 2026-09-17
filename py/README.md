@@ -266,12 +266,12 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `artist` | Name of the artist |
+| `artist` |  |
 | `created_at` |  |
 | `id` |  |
-| `source` | Original source URL |
-| `tags` | Tags associated with the image |
-| `url` | URL of the image to add |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Create, List, Load.
 
@@ -281,11 +281,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
 
 Operations: Load.
 
@@ -312,12 +307,12 @@ Create an instance: `booru = client.Booru()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `str` | Name of the artist |
+| `artist` | `str` |  |
 | `created_at` | `str` |  |
 | `id` | `str` |  |
-| `source` | `str` | Original source URL |
-| `tags` | `list` | Tags associated with the image |
-| `url` | `str` | URL of the image to add |
+| `source` | `str` |  |
+| `tags` | `list` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
@@ -348,16 +343,6 @@ Create an instance: `image = client.Image()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `str` |  |
-| `id` | `str` |  |
-| `source` | `str` |  |
-| `tags` | `list` |  |
-| `url` | `str` |  |
 
 #### Example: Load
 
@@ -508,6 +493,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── nekosianeko_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

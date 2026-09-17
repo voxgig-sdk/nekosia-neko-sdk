@@ -46,11 +46,6 @@ type BooruCreateData struct {
 
 // Image is the typed data model for the image entity.
 type Image struct {
-	Artist *string `json:"artist,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // ImageLoadMatch is the typed request payload for Image.LoadTyped.

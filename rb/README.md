@@ -263,12 +263,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `artist` | Name of the artist |
+| `artist` |  |
 | `created_at` |  |
 | `id` |  |
-| `source` | Original source URL |
-| `tags` | Tags associated with the image |
-| `url` | URL of the image to add |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Create, List, Load.
 
@@ -278,11 +278,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
 
 Operations: Load.
 
@@ -309,12 +304,12 @@ Create an instance: `booru = client.Booru`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `String` | Name of the artist |
+| `artist` | `String` |  |
 | `created_at` | `String` |  |
 | `id` | `String` |  |
-| `source` | `String` | Original source URL |
-| `tags` | `Array` | Tags associated with the image |
-| `url` | `String` | URL of the image to add |
+| `source` | `String` |  |
+| `tags` | `Array` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
@@ -347,16 +342,6 @@ Create an instance: `image = client.Image`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `String` |  |
-| `id` | `String` |  |
-| `source` | `String` |  |
-| `tags` | `Array` |  |
-| `url` | `String` |  |
 
 #### Example: Load
 
@@ -508,6 +493,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── NekosiaNeko_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

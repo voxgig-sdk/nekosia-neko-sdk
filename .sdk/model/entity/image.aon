@@ -4,40 +4,6 @@ main: kit: entity: image: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "artist"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "source"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "tags"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      format: "uri"
-      name: "url"
-      req: false
-      type: "`$STRING`"
-    }
-  ]
-
-  id: {
-    field: "id"
-    name: "id"
-  }
-
   name: "image"
   op: {
     load: {

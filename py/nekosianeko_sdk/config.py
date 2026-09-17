@@ -117,7 +117,6 @@ def make_config():
         "fields": [
           {
             "name": "artist",
-            "short": "Name of the artist",
             "type": "`$STRING`",
           },
           {
@@ -131,24 +130,15 @@ def make_config():
           },
           {
             "name": "source",
-            "short": "Original source URL",
             "type": "`$STRING`",
           },
           {
             "name": "tags",
-            "short": "Tags associated with the image",
             "type": "`$ARRAY`",
           },
           {
             "format": "uri",
             "name": "url",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "short": "URL of the image to add",
             "type": "`$STRING`",
           },
         ],
@@ -301,33 +291,7 @@ def make_config():
         },
       },
       "image": {
-        "fields": [
-          {
-            "name": "artist",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "id",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "source",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "tags",
-            "type": "`$ARRAY`",
-          },
-          {
-            "format": "uri",
-            "name": "url",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
+        "fields": [],
         "name": "image",
         "op": {
           "load": {

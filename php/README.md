@@ -274,12 +274,12 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `artist` | Name of the artist |
+| `artist` |  |
 | `created_at` |  |
 | `id` |  |
-| `source` | Original source URL |
-| `tags` | Tags associated with the image |
-| `url` | URL of the image to add |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Create, List, Load.
 
@@ -289,11 +289,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
 
 Operations: Load.
 
@@ -320,12 +315,12 @@ Create an instance: `$booru = $client->Booru();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` | Name of the artist |
+| `artist` | `string` |  |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` | Original source URL |
-| `tags` | `array` | Tags associated with the image |
-| `url` | `string` | URL of the image to add |
+| `source` | `string` |  |
+| `tags` | `array` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -358,16 +353,6 @@ Create an instance: `$image = $client->Image();`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `array` |  |
-| `url` | `string` |  |
 
 #### Example: Load
 
@@ -519,6 +504,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── nekosianeko_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

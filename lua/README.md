@@ -252,12 +252,12 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `artist` | Name of the artist |
+| `artist` |  |
 | `created_at` |  |
 | `id` |  |
-| `source` | Original source URL |
-| `tags` | Tags associated with the image |
-| `url` | URL of the image to add |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: Create, List, Load.
 
@@ -267,11 +267,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
 
 Operations: Load.
 
@@ -298,12 +293,12 @@ Create an instance: `local booru = client:Booru(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` | Name of the artist |
+| `artist` | `string` |  |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` | Original source URL |
-| `tags` | `table` | Tags associated with the image |
-| `url` | `string` | URL of the image to add |
+| `source` | `string` |  |
+| `tags` | `table` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -334,16 +329,6 @@ Create an instance: `local image = client:Image(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `table` |  |
-| `url` | `string` |  |
 
 #### Example: Load
 
@@ -494,6 +479,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── nekosia-neko_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

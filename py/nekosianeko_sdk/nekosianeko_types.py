@@ -44,12 +44,8 @@ class BooruCreateData(TypedDict, total=False):
     url: str
 
 
-class Image(TypedDict, total=False):
-    artist: str
-    id: str
-    source: str
-    tags: list
-    url: str
+class Image(TypedDict):
+    pass
 
 
 class ImageLoadMatch(TypedDict, total=False):

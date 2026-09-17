@@ -92,7 +92,6 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "artist",
-						"short": "Name of the artist",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -106,24 +105,15 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "source",
-						"short": "Original source URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "tags",
-						"short": "Tags associated with the image",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"format": "uri",
 						"name": "url",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"short": "URL of the image to add",
 						"type": "`$STRING`",
 					},
 				},
@@ -276,33 +266,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"image": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "artist",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "id",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "source",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "tags",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "url",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
+				"fields": []any{},
 				"name": "image",
 				"op": map[string]any{
 					"load": map[string]any{

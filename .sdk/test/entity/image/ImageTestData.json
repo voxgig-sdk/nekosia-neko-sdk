@@ -2,36 +2,19 @@
   "existing": {
     "image": {
       "IMAGE00": {
-        "artist": "s32",
-        "id": "IMAGE00",
-        "source": "s34",
-        "tags": [],
-        "url": "s36"
+        "id": "IMAGE00"
       },
       "IMAGE01": {
-        "artist": "s64",
-        "id": "IMAGE01",
-        "source": "s66",
-        "tags": [],
-        "url": "s68"
+        "id": "IMAGE01"
       },
       "IMAGE02": {
-        "artist": "s96",
-        "id": "IMAGE02",
-        "source": "s98",
-        "tags": [],
-        "url": "s9a"
+        "id": "IMAGE02"
       }
     }
   },
   "new": {
     "image": {
-      "image_ref01": {
-        "artist": "sc8",
-        "source": "sca",
-        "tags": [],
-        "url": "scc"
-      }
+      "image_ref01": {}
     }
   },
   "requests": {

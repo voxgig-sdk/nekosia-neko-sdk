@@ -31,11 +31,6 @@
 ---@field url? string
 
 ---@class Image
----@field artist? string
----@field id? string
----@field source? string
----@field tags? table
----@field url? string
 
 ---@class ImageLoadMatch
 ---@field count? number

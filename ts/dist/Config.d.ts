@@ -77,32 +77,11 @@ declare class Config {
         booru: {
             fields: ({
                 name: string;
-                short: string;
                 type: string;
                 format?: undefined;
-                op?: undefined;
             } | {
                 format: string;
                 name: string;
-                type: string;
-                short?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                type: string;
-                short?: undefined;
-                format?: undefined;
-                op?: undefined;
-            } | {
-                format: string;
-                name: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                };
-                short: string;
                 type: string;
             })[];
             id: {
@@ -207,19 +186,7 @@ declare class Config {
             };
         };
         image: {
-            fields: ({
-                name: string;
-                type: string;
-                format?: undefined;
-            } | {
-                format: string;
-                name: string;
-                type: string;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
+            fields: never[];
             name: string;
             op: {
                 load: {

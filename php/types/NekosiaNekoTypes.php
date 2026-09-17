@@ -51,11 +51,6 @@ class BooruCreateData
 /** Image entity data model. */
 class Image
 {
-    public ?string $artist = null;
-    public ?string $id = null;
-    public ?string $source = null;
-    public ?array $tags = null;
-    public ?string $url = null;
 }
 
 /** Request payload for Image#load. */

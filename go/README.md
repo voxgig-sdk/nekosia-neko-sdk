@@ -278,12 +278,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"artist"` | Name of the artist |
+| `"artist"` |  |
 | `"created_at"` |  |
 | `"id"` |  |
-| `"source"` | Original source URL |
-| `"tags"` | Tags associated with the image |
-| `"url"` | URL of the image to add |
+| `"source"` |  |
+| `"tags"` |  |
+| `"url"` |  |
 
 Operations: Create, List, Load.
 
@@ -293,11 +293,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `"artist"` |  |
-| `"id"` |  |
-| `"source"` |  |
-| `"tags"` |  |
-| `"url"` |  |
 
 Operations: Load.
 
@@ -324,12 +319,12 @@ Create an instance: `booru := client.Booru(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` | Name of the artist |
+| `artist` | `string` |  |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` | Original source URL |
-| `tags` | `[]any` | Tags associated with the image |
-| `url` | `string` | URL of the image to add |
+| `source` | `string` |  |
+| `tags` | `[]any` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -372,16 +367,6 @@ Create an instance: `image := client.Image(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `[]any` |  |
-| `url` | `string` |  |
 
 #### Example: Load
 

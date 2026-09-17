@@ -320,12 +320,12 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `artist` | Name of the artist |
+| `artist` |  |
 | `created_at` |  |
 | `id` |  |
-| `source` | Original source URL |
-| `tags` | Tags associated with the image |
-| `url` | URL of the image to add |
+| `source` |  |
+| `tags` |  |
+| `url` |  |
 
 Operations: create, list, load.
 
@@ -335,11 +335,6 @@ API path: `/booru/images`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `id` |  |
-| `source` |  |
-| `tags` |  |
-| `url` |  |
 
 Operations: load.
 
@@ -366,12 +361,12 @@ Create an instance: `const booru = client.Booru()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `string` | Name of the artist |
+| `artist` | `string` |  |
 | `created_at` | `string` |  |
 | `id` | `string` |  |
-| `source` | `string` | Original source URL |
-| `tags` | `any[]` | Tags associated with the image |
-| `url` | `string` | URL of the image to add |
+| `source` | `string` |  |
+| `tags` | `any[]` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -402,16 +397,6 @@ Create an instance: `const image = client.Image()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `artist` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `tags` | `any[]` |  |
-| `url` | `string` |  |
 
 #### Example: Load
 

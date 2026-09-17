@@ -91,23 +91,12 @@ booru = client.Booru()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `str` | No | Name of the artist |
+| `artist` | `str` | No |  |
 | `created_at` | `str` | No |  |
 | `id` | `str` | No |  |
-| `source` | `str` | No | Original source URL |
-| `tags` | `list` | No | Tags associated with the image |
-| `url` | `str` | No | URL of the image to add |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `artist` | - | - | - |
-| `created_at` | - | - | - |
-| `id` | - | - | - |
-| `source` | - | - | - |
-| `tags` | - | - | - |
-| `url` | - | - | Yes |
+| `source` | `str` | No |  |
+| `tags` | `list` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
@@ -172,16 +161,6 @@ Return the entity name.
 ```python
 image = client.Image()
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `artist` | `str` | No |  |
-| `id` | `str` | No |  |
-| `source` | `str` | No |  |
-| `tags` | `list` | No |  |
-| `url` | `str` | No |  |
 
 ### Operations
 

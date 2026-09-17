@@ -41,13 +41,9 @@ class ImageEntityTest < Minitest::Test
 
     # LOAD
     image_ref01_ent = client.Image(nil)
-    image_ref01_match_dt0 = {
-      "id" => image_ref01_data["id"],
-    }
+    image_ref01_match_dt0 = {}
     image_ref01_data_dt0_loaded = image_ref01_ent.load(image_ref01_match_dt0, nil)
-    image_ref01_data_dt0_load_result = Helpers.to_map(image_ref01_data_dt0_loaded.respond_to?(:data_get) ? image_ref01_data_dt0_loaded.data_get : image_ref01_data_dt0_loaded)
-    assert !image_ref01_data_dt0_load_result.nil?
-    assert_equal image_ref01_data_dt0_load_result["id"], image_ref01_data["id"]
+    assert !image_ref01_data_dt0_loaded.nil?
 
   end
 end

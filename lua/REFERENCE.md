@@ -94,23 +94,12 @@ local booru = client:Booru(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `string` | No | Name of the artist |
+| `artist` | `string` | No |  |
 | `created_at` | `string` | No |  |
 | `id` | `string` | No |  |
-| `source` | `string` | No | Original source URL |
-| `tags` | `table` | No | Tags associated with the image |
-| `url` | `string` | No | URL of the image to add |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `artist` | - | - | - |
-| `created_at` | - | - | - |
-| `id` | - | - | - |
-| `source` | - | - | - |
-| `tags` | - | - | - |
-| `url` | - | - | Yes |
+| `source` | `string` | No |  |
+| `tags` | `table` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -174,16 +163,6 @@ Return the entity name.
 ```lua
 local image = client:Image(nil)
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `artist` | `string` | No |  |
-| `id` | `string` | No |  |
-| `source` | `string` | No |  |
-| `tags` | `table` | No |  |
-| `url` | `string` | No |  |
 
 ### Operations
 

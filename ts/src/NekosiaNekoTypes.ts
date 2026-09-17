@@ -46,11 +46,6 @@ export interface BooruCreateData {
 }
 
 export interface Image {
-  artist?: string
-  id?: string
-  source?: string
-  tags?: any[]
-  url?: string
 }
 
 export interface ImageLoadMatch {

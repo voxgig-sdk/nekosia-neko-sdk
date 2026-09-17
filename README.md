@@ -105,12 +105,12 @@ local results, err = client:Booru():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
-| Python | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
-| PHP | `voxgig-sdk/nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| Python | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| PHP | `voxgig-sdk/nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/nekosia-neko-sdk/go` | `go get github.com/voxgig-sdk/nekosia-neko-sdk/go@latest` |
-| Ruby | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
-| Lua | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/releases) |
+| Ruby | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| Lua | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/nekosia-neko-sdk/go-cli` | `go install github.com/voxgig-sdk/nekosia-neko-sdk/go-cli/cmd/nekosia-neko@latest` |
 | Go MCP server | `github.com/voxgig-sdk/nekosia-neko-sdk/go-mcp` | `go get github.com/voxgig-sdk/nekosia-neko-sdk/go-mcp@latest` |
 

@@ -97,23 +97,12 @@ booru = client.Booru
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `String` | No | Name of the artist |
+| `artist` | `String` | No |  |
 | `created_at` | `String` | No |  |
 | `id` | `String` | No |  |
-| `source` | `String` | No | Original source URL |
-| `tags` | `Array` | No | Tags associated with the image |
-| `url` | `String` | No | URL of the image to add |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `artist` | - | - | - |
-| `created_at` | - | - | - |
-| `id` | - | - | - |
-| `source` | - | - | - |
-| `tags` | - | - | - |
-| `url` | - | - | Yes |
+| `source` | `String` | No |  |
+| `tags` | `Array` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
@@ -177,16 +166,6 @@ Return the entity name.
 ```ruby
 image = client.Image
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `artist` | `String` | No |  |
-| `id` | `String` | No |  |
-| `source` | `String` | No |  |
-| `tags` | `Array` | No |  |
-| `url` | `String` | No |  |
 
 ### Operations
 

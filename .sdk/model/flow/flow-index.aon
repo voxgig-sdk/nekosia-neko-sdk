@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicBooruFlow.aon"
-@"BasicImageFlow.aon"
+@"./BasicBooruFlow.aon"
+@"./BasicImageFlow.aon"
