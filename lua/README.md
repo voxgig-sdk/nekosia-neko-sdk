@@ -43,7 +43,7 @@ local boorus, err = client:Booru():list()
 if err then error(err) end
 
 for _, item in ipairs(boorus) do
-  print(item["id"], item["artist"])
+  print(item["id"])
 end
 ```
 

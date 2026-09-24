@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -115,29 +108,35 @@ class Config {
             "fields": [
                 {
                     "name": "artist",
+                    "title": "Artist",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "date-time",
                     "name": "created_at",
-                    "type": "`$STRING`"
+                    "title": "Created At",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "source",
+                    "title": "Source",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "tags",
+                    "title": "Tags",
                     "type": "`$ARRAY`"
                 },
                 {
-                    "format": "uri",
                     "name": "url",
-                    "type": "`$STRING`"
+                    "title": "Url",
+                    "type": "`$STRING`",
+                    "format": "uri"
                 }
             ],
             "id": {
@@ -151,7 +150,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/booru/images",
@@ -163,17 +161,19 @@ class Config {
                                     "lit": "images"
                                 }
                             ],
-                            "select": {
-                                "$action": "image"
-                            },
+                            "parts": [
+                                "booru",
+                                "images"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.data`"
                             },
-                            "parts": [
-                                "booru",
-                                "images"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "image"
+                            }
                         }
                     ]
                 },
@@ -182,30 +182,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 20,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tag",
-                                        "orig": "tag",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/booru/images",
@@ -217,6 +193,39 @@ class Config {
                                     "lit": "images"
                                 }
                             ],
+                            "parts": [
+                                "booru",
+                                "images"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 20
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "tag",
+                                        "orig": "tag",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "image",
                                 "exist": [
@@ -224,15 +233,7 @@ class Config {
                                     "page",
                                     "tag"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "booru",
-                                "images"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -241,17 +242,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/booru/images/{id}",
@@ -266,20 +256,32 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
                             "parts": [
                                 "booru",
                                 "images",
                                 "{id}"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -297,17 +299,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "count",
-                                        "orig": "count",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/images/husbando",
@@ -319,33 +310,34 @@ class Config {
                                     "lit": "husbando"
                                 }
                             ],
+                            "parts": [
+                                "images",
+                                "husbando"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "count",
+                                        "orig": "count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "husbando",
                                 "exist": [
                                     "count"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
-                            "parts": [
-                                "images",
-                                "husbando"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "count",
-                                        "orig": "count",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/images/kitsune",
@@ -357,33 +349,34 @@ class Config {
                                     "lit": "kitsune"
                                 }
                             ],
+                            "parts": [
+                                "images",
+                                "kitsune"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "count",
+                                        "orig": "count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "kitsune",
                                 "exist": [
                                     "count"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
-                            "parts": [
-                                "images",
-                                "kitsune"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "count",
-                                        "orig": "count",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/images/neko",
@@ -395,33 +388,34 @@ class Config {
                                     "lit": "neko"
                                 }
                             ],
+                            "parts": [
+                                "images",
+                                "neko"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "count",
+                                        "orig": "count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "neko",
                                 "exist": [
                                     "count"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
-                            "parts": [
-                                "images",
-                                "neko"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "count",
-                                        "orig": "count",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/images/waifu",
@@ -433,20 +427,32 @@ class Config {
                                     "lit": "waifu"
                                 }
                             ],
+                            "parts": [
+                                "images",
+                                "waifu"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "count",
+                                        "orig": "count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "waifu",
                                 "exist": [
                                     "count"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
-                            "parts": [
-                                "images",
-                                "waifu"
-                            ]
+                            }
                         }
                     ]
                 }

@@ -1,0 +1,177 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  name: "image"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /images/husbando"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/husbando"
+          q: {
+            "$action": "husbando"
+            exist: [
+              "count"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "husbando"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /images/kitsune"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/kitsune"
+          q: {
+            "$action": "kitsune"
+            exist: [
+              "count"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "kitsune"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /images/neko"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/neko"
+          q: {
+            "$action": "neko"
+            exist: [
+              "count"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "neko"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /images/waifu"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/waifu"
+          q: {
+            "$action": "waifu"
+            exist: [
+              "count"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "waifu"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -88,29 +88,35 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "artist",
+            ["title"] = "Artist",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "created_at",
+            ["title"] = "Created At",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "source",
+            ["title"] = "Source",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "tags",
+            ["title"] = "Tags",
             ["type"] = "`$ARRAY`",
           },
           {
-            ["format"] = "uri",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "uri",
           },
         },
         ["id"] = {
@@ -124,7 +130,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/booru/images",
@@ -136,16 +141,18 @@ local function make_config()
                     ["lit"] = "images",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "image",
+                ["parts"] = {
+                  "booru",
+                  "images",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["parts"] = {
-                  "booru",
-                  "images",
+                ["args"] = {},
+                ["select"] = {
+                  ["$action"] = "image",
                 },
               },
             },
@@ -155,30 +162,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = 20,
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = 1,
-                      ["kind"] = "query",
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "tag",
-                      ["orig"] = "tag",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/booru/images",
@@ -190,6 +173,39 @@ local function make_config()
                     ["lit"] = "images",
                   },
                 },
+                ["parts"] = {
+                  "booru",
+                  "images",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 20,
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 1,
+                    },
+                    {
+                      ["name"] = "tag",
+                      ["orig"] = "tag",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "image",
                   ["exist"] = {
@@ -197,14 +213,6 @@ local function make_config()
                     "page",
                     "tag",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "booru",
-                  "images",
                 },
               },
             },
@@ -214,17 +222,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/booru/images/{id}",
@@ -239,19 +236,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
                 ["parts"] = {
                   "booru",
                   "images",
                   "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -270,17 +279,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = 1,
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/husbando",
@@ -292,33 +290,34 @@ local function make_config()
                     ["lit"] = "husbando",
                   },
                 },
+                ["parts"] = {
+                  "images",
+                  "husbando",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 1,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "husbando",
                   ["exist"] = {
                     "count",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
-                ["parts"] = {
-                  "images",
-                  "husbando",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = 1,
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/kitsune",
@@ -330,33 +329,34 @@ local function make_config()
                     ["lit"] = "kitsune",
                   },
                 },
+                ["parts"] = {
+                  "images",
+                  "kitsune",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 1,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "kitsune",
                   ["exist"] = {
                     "count",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
-                ["parts"] = {
-                  "images",
-                  "kitsune",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = 1,
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/neko",
@@ -368,33 +368,34 @@ local function make_config()
                     ["lit"] = "neko",
                   },
                 },
+                ["parts"] = {
+                  "images",
+                  "neko",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 1,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "neko",
                   ["exist"] = {
                     "count",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
-                ["parts"] = {
-                  "images",
-                  "neko",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = 1,
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/waifu",
@@ -406,19 +407,31 @@ local function make_config()
                     ["lit"] = "waifu",
                   },
                 },
+                ["parts"] = {
+                  "images",
+                  "waifu",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 1,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "waifu",
                   ["exist"] = {
                     "count",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
-                ["parts"] = {
-                  "images",
-                  "waifu",
                 },
               },
             },
