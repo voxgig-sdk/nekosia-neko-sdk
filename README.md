@@ -106,11 +106,11 @@ local results, err = client:Booru():list()
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
-| Python | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
-| PHP | `voxgig-sdk/nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| Python | `voxgig-sdk-nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| PHP | `voxgig-sdk/nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/nekosia-neko-sdk/go` | `go get github.com/voxgig-sdk/nekosia-neko-sdk/go@latest` |
-| Ruby | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
-| Lua | `voxgig-sdk-nekosia-neko` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| Ruby | `voxgig-sdk-nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
+| Lua | `voxgig-sdk-nekosia-neko-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nekosia-neko-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/nekosia-neko-sdk/go-cli` | `go install github.com/voxgig-sdk/nekosia-neko-sdk/go-cli/cmd/nekosia-neko@latest` |
 | Go MCP server | `github.com/voxgig-sdk/nekosia-neko-sdk/go-mcp` | `go get github.com/voxgig-sdk/nekosia-neko-sdk/go-mcp@latest` |
 
@@ -356,10 +356,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
